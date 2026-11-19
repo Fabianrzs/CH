@@ -1,0 +1,36 @@
+.contenedor-hv {
+    margin-top: 50px;
+    width: 92%;
+    padding: 10px;
+    position: relative;
+    margin: 0 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.campos {
+    display: flex;
+    .control {
+        height: 44px;
+        display: flex;
+        .label {
+            position: absolute;
+            font-size: 12px;
+            text-align: center;
+        }
+        .value {
+            margin-top: auto;
+            display: flex;
+            text-align: center;
+            input {
+                width: 100px;
+                margin-top: auto;
+                text-align: center;
+            }
+        }
+    }
+}

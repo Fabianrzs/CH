@@ -1,0 +1,54 @@
+# Entorno de mocks para GA2: MockIntegrations (HTTP 5080 + SMTP 2525) y el emulador oficial de Azure Service Bus.
+# Uso: cp .env.example .env && docker compose up -d --build
+name: ga2-mocks
+
+services:
+  mockintegrations:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5080:5080"   # HTTP: SOAP, REST, Swagger (/swagger)
+      - "2525:2525"   # SMTP de captura
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      # Publicación de eventos hacia el emulador (red interna de compose).
+      MockIntegrations__ServiceBus__ConnectionString: "Endpoint=sb://servicebus-emulator;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;"
+
+  servicebus-emulator:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
+    volumes:
+      - ./docker/servicebus-emulator/Config.json:/ServiceBus_Emulator/ConfigFiles/Config.json
+    ports:
+      - "127.0.0.1:5672:5672"   # AMQP (sin TLS)
+      - "127.0.0.1:5300:5300"   # Salud / administración
+      # Con UseDevelopmentEmulator y una única cadena "sb://localhost", el cliente de administración (reglas)
+      # usa el puerto 80. GA2 usa la misma cadena para datos y administración: se publica 5300 también en 80.
+      - "127.0.0.1:80:5300"
+    environment:
+      SQL_SERVER: servicebus-sql
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Defina MSSQL_SA_PASSWORD en .env}
+      ACCEPT_EULA: "Y"
+    depends_on:
+      - servicebus-sql
+
+  servicebus-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "127.0.0.1:14333:1433"   # Sólo local: inspección y base stub de la prueba de humo (docker/ga2-smoke)
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Defina MSSQL_SA_PASSWORD en .env}
+
+  # Sólo si GA2 usa Azure.Messaging.ServiceBus < 7.18 (hoy 7.9.0): terminación TLS en 443/5671 hacia el emulador.
+  # Requiere ./docker/tls-proxy/generate-certs.sh y confiar en certs/ga2-mocks-ca.crt donde corre GA2.
+  # Uso: docker compose --profile ga2-sdk79 up -d
+  servicebus-tls-proxy:
+    profiles: ["ga2-sdk79"]
+    image: nginx:1.27-alpine
+    network_mode: host
+    volumes:
+      - ./docker/tls-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/tls-proxy/certs:/certs:ro
+    depends_on:
+      - servicebus-emulator

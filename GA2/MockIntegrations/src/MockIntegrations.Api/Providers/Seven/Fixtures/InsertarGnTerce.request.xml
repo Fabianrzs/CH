@@ -1,0 +1,23 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarGnTerce xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <tip_codi>1</tip_codi>
+      <ter_coda>ter_coda</ter_coda>
+      <ter_dive>1</ter_dive>
+      <ter_nomb>ter_nomb</ter_nomb>
+      <ter_apel>ter_apel</ter_apel>
+      <ter_nocm>ter_nocm</ter_nocm>
+      <mod_codi>1</mod_codi>
+      <pai_codi>1</pai_codi>
+      <dep_codi>1</dep_codi>
+      <mun_codi>1</mun_codi>
+      <ter_dire>ter_dire</ter_dire>
+      <ter_ntel>ter_ntel</ter_ntel>
+      <ter_mail>ter_mail</ter_mail>
+      <ter_nfax>ter_nfax</ter_nfax>
+      <arb_clte>arb_clte</arb_clte>
+      <ter_audp>ter_audp</ter_audp>
+    </InsertarGnTerce>
+  </s:Body>
+</s:Envelope>

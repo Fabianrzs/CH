@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>GA2.Application.Dto</RootNamespace>
+    <Configurations>Debug;Release;Desarrollo</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CargaNomina\TipoArchivoReportado.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="System.DirectoryServices" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GA2.Domain\Entities\Entities.csproj" />
+    <ProjectReference Include="..\..\GA2.Transversals\Commons\Commons.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cartera\ProductoPorCliente\blic\" />
+  </ItemGroup>
+</Project>

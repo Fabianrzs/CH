@@ -1,0 +1,369 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>GA2.Apis.GA2</RootNamespace>
+		<Configurations>Release;Desarrollo;Debug</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<UserSecretsId>25a06c6a-5174-4f71-9ed1-413f416395cb</UserSecretsId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<EnvironmentName>Production</EnvironmentName>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU'">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<EnvironmentName>Desarrollo</EnvironmentName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<EnvironmentName>Development</EnvironmentName>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'GA2' " />
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'IIS Express' " />
+	<ItemGroup>
+		<Content Remove="appsettings.json" />
+		<Content Remove="appsettings.Desarrollo.json" />
+		<Compile Remove="Connected Services\**" />
+		<Compile Remove="Reportes\HTML\Templates\HTML\Preaprobados\Hipotecario\**" />
+		<Compile Remove="Reportes\HTML\Templates\HTML\Preaprobados\Leasing\**" />
+		<Content Remove="appsettings.*.json" />
+		<Content Remove="Connected Services\**" />
+		<Content Remove="Reportes\HTML\Templates\HTML\Preaprobados\Hipotecario\**" />
+		<Content Remove="Reportes\HTML\Templates\HTML\Preaprobados\Leasing\**" />
+		<EmbeddedResource Remove="Connected Services\**" />
+		<EmbeddedResource Remove="Reportes\HTML\Templates\HTML\Preaprobados\Hipotecario\**" />
+		<EmbeddedResource Remove="Reportes\HTML\Templates\HTML\Preaprobados\Leasing\**" />
+		<EntityDeploy Remove="Reportes\HTML\Templates\HTML\Preaprobados\Hipotecario\**" />
+		<EntityDeploy Remove="Reportes\HTML\Templates\HTML\Preaprobados\Leasing\**" />
+		<None Remove="Connected Services\**" />
+		<None Remove="Reportes\HTML\Templates\HTML\Preaprobados\Hipotecario\**" />
+		<None Remove="Reportes\HTML\Templates\HTML\Preaprobados\Leasing\**" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="'$(Configuration)' == 'Desarrollo'">
+			<ItemGroup>
+				<None Include="appsettings.Desarrollo.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+				<None Include="appsettings.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+				<Content Remove="appsettings.*.json;appsettings.json" />
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<ItemGroup>
+				<None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+				<None Include="appsettings.Desarrollo.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
+
+	<ItemGroup>
+	  <None Remove="Reportes\HTML\Templates\HTML\Novedades\Template.html" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Reportes\HTML\Templates\HTML\Novedades\TemplatePdfDefault.html" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Reportes\HTML\Templates\HTML\Novedades\TemplatePdfPorcentaje.html" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Reportes\HTML\Templates\HTML\Novedades\FooterPdf.html" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Reportes\HTML\Templates\HTML\Novedades\HeaderPdf.html" />
+		<None Remove="Reportes\InformeRestructuracionDeuda.rdlc" />
+		<None Remove="Reportes\ReporteSFCF14 - Copia %282%29.rdlc" />
+		<None Remove="Reportes\ReporteSFCF14 - Copia.rdlc" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.Development.json" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- Perfil de pruebas con MockIntegrations (ASPNETCORE_ENVIRONMENT=Mocks). No se publica. -->
+		<None Include="appsettings.Mocks.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Reportes\HTML\Templates\HTML\Novedades\Template.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Reportes\HTML\Templates\HTML\Novedades\TemplatePdfDefault.html">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Reportes\HTML\Templates\HTML\Novedades\TemplatePdfPorcentaje.html">
+		 <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Reportes\HTML\Templates\HTML\Novedades\FooterPdf.html">
+		 <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+		<EmbeddedResource Include="Reportes\HTML\Templates\HTML\Novedades\HeaderPdf.html">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ardalis.ApiEndpoints" Version="3.0.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
+		<PackageReference Include="Autofac" Version="6.4.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="EPPlus" Version="7.0.0-preview2" />
+		<PackageReference Include="Hangfire" Version="1.8.18" />
+		<PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
+		<PackageReference Include="Hangfire.Core" Version="1.8.18" />
+		<PackageReference Include="Hangfire.MemoryStorage" Version="1.8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="5.0.17" />
+		<PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="5.0.1" />
+		<PackageReference Include="Select.HtmlToPdf" Version="21.1.0" />
+		<PackageReference Include="Select.HtmlToPdf.NetCore" Version="21.1.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+		<PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.0" />
+		<PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\HangFire\HangFire.csproj" />
+		<ProjectReference Include="..\..\GA2.BuildingBlocks\EventBusServiceBus\EventBusServiceBus.csproj" />
+		<ProjectReference Include="..\..\GA2.Domain\Core\Core.csproj" />
+		<ProjectReference Include="..\..\GA2.Transversals\Mappers\Mappers.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<WCFMetadata Include="Connected Services" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="GA2_DEVELOPDataSet.xsd">
+	    <Generator>MSDataSetGenerator</Generator>
+	    <LastGenOutput>GA2_DEVELOPDataSet.Designer.cs</LastGenOutput>
+	  </None>
+	  <None Update="Img\FOOTER.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Img\Header.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Img\REPORTE_ENCABEZADO.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Img\REPORTE_PIE_PAGINA.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="LineasDeObligacionDataSet1.xsd">
+	    <Generator>MSDataSetGenerator</Generator>
+	    <LastGenOutput>LineasDeObligacionDataSet1.Designer.cs</LastGenOutput>
+	  </None>
+	  <None Update="Reportes\Cartera\CertificacionAnioGravable.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Cartera\PazSalvo\footer.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Cartera\PazSalvo\header.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Cartera\PazSalvo\main-content.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\CertificadoIngresosRetenciones.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\EstadoCuentaAfiliado.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Extractos\ReporteCreditoExtractoAnualHipotecario.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Extractos\ReporteCreditoExtractoAnual.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Extractos\ReporteCreditoExtractoMensual.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Financiera\ResumenConceptosFinancieros.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\Haberes\ReporteHaberes.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\HTML\ReporteExtractoMensual.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\HTML\Templates\HTML\Oficios\OficioReintegro.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\NotificacionAprobacion.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\OtrasGarantias.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\GarantiaIdoneaTC.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\GarantiaIdoneaAutos.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\GarantiaIdoneaOtros.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\OtrasGarantiasTC.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\OtrasGarantiasAutos.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\OtrasGarantiasOtros.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteExtractoAnualHipotecario.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteExtractoMensualHipotecario.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\FacturaSevenCredito.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\NotificacionRechazo.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteProspeccionReclasificacion.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSFCF343.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSFCF453.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteTransUnion.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportPlanillaPagosReintegros.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportPlanillaPagosIndiCesantias.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportSimulacionCredito - Copia.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportSimulacionCreditoHipotecario.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportSimulacionCredito.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSimulacionCredito60%.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReportSimulacionCreditoLeasing.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\SolicitudCredito\ReporteCreditoSolicitudProducto.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\VIS.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\NoVIS.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\HTML\images\ENCABEZADO2022.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\HTML\images\PIEDEPAGINA2022.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\MovimientoCartera.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteExtractoAnual.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteExtractoMensual.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSFCF14.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSFCF41.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\_ReporteSFCF41 - Copia.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\GarantiaIdonea.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Reportes\ReporteSFCF16.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="DataSet\SFC414DataSet.xsd">
+	    <Generator>MSDataSetGenerator</Generator>
+	    <LastGenOutput>SFC414DataSet.Designer.cs</LastGenOutput>
+	  </None>
+	  <None Update="SFC341DataSet.xsd">
+	    <Generator>MSDataSetGenerator</Generator>
+	    <LastGenOutput>SFC341DataSet.Designer.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Endpoints\NewFolder\" />
+	  <Folder Include="Reportes\HTML\images\Logos2026\" />
+	  <Folder Include="Reportes\HTML\Templates\CSS\Afiliaciones\" />
+	  <Folder Include="Reportes\HTML\Templates\CSS\Preaprobados\Leasing\" />
+	  <Folder Include="Reportes\HTML\Templates\CSS\Preaprobados\Hipotecario\" />
+	  <Folder Include="Reportes\HTML\Templates\CSS\Preaprobados\Afiliaciones\" />
+	  <Folder Include="Reportes\Haberes\" />
+	  <Folder Include="Reportes\Financiera\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Include="Reportes\InformeRestructuracionDeuda.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="DataSet\SFC414DataSet.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SFC414DataSet.xsd</DependentUpon>
+	  </Compile>
+	  <Compile Update="GA2_DEVELOPDataSet.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>GA2_DEVELOPDataSet.xsd</DependentUpon>
+	  </Compile>
+	  <Compile Update="LineasDeObligacionDataSet1.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>LineasDeObligacionDataSet1.xsd</DependentUpon>
+	  </Compile>
+	  <Compile Update="SFC341DataSet.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SFC341DataSet.xsd</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Workflow_StartResponse xmlns="http://tempuri.org/">
+      <Workflow_StartResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </Workflow_StartResponse>
+  </s:Body>
+</s:Envelope>

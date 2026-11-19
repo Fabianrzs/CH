@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GA2.Transversals.Commons.Exceptions
+{
+    public class CsvFieldNotFoundException : Exception
+    {
+        public CsvFieldNotFoundException(string message) : base(message)
+        {
+
+        }
+    }
+}

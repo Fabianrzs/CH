@@ -1,0 +1,56 @@
+.container-3{
+    width: 70%;
+    margin: 0 auto;
+    padding: 3em;
+    text-align: center;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-ico{
+    padding: 0.1em;
+}
+
+.separador {
+    border-left: 1px solid #aaafc1;
+    background: none;
+    width: 12px;
+    -webkit-box-shadow: -6px 0px 8px -6px rgba(0,0,0,0.60); 
+    box-shadow: -6px 0px 8px -6px rgba(0,0,0,0.60);
+    display: inline-block;
+    vertical-align: top;
+}
+
+.separador-marg-2{
+    margin: 0 30px 0 50px;
+}
+
+.separador-alt{
+    height: 14vh;
+}
+
+.icoBig{
+    font-size: 6em;
+    margin: 10px 0;
+}
+
+.tittle{
+    font-weight: 600;
+    font-size: 2.2em;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+    text-align: left;
+}
+
+.yellow{
+    color: #fec917;
+}
+
+.blue {
+    color: #1c3f8b;
+}

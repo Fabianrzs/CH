@@ -1,0 +1,15 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <SetContabToperResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <SetContabToperResult>
+        <TRetToper>
+          <Mco_secu>1</Mco_secu>
+          <Retorno>Retorno</Retorno>
+          <TxtError>TxtError</TxtError>
+          <Mco_cont>1</Mco_cont>
+          <Mco_nume>1</Mco_nume>
+        </TRetToper>
+      </SetContabToperResult>
+    </SetContabToperResponse>
+  </s:Body>
+</s:Envelope>

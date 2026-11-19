@@ -1,0 +1,339 @@
+import React, { useEffect, useState } from "react";
+import { makeStyles, createStyles, Tooltip, CircularProgress, IconButton } from "@material-ui/core";
+import moment from "moment";
+import MUIDataTable from "mui-datatables";
+import { toast } from "react-toastify";
+import { CloudDownload } from "@material-ui/icons";
+import UtilService from "../../../../../utils/util.service";
+import { ColumnFormatType } from "../../../../../enums/ColumnFormatType";
+import handleExportToExcel from "../../../../Reports/helpers/handleExportToExcel";
+import ReporteEstadoMovimientos from "../types/ReporteEstadoMovimientos.type";
+import ReporteEstadoCuentaAfiliado from "../types/ReporteEstadoCuentaAfiliado.type";
+import CatalogApi from "../../../../../services/api-catalog.service";
+
+
+interface FormData {
+    fechaInicial: Date,
+    fechaFinal: Date,
+}
+
+interface tableProps {
+    data: ReporteEstadoMovimientos[],
+    estadoCuenta: ReporteEstadoCuentaAfiliado,
+    isLoading?: boolean,
+    formData: FormData
+}
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        buttonprincipal: {
+            width: '250px',
+            height: '50px',
+            marginLeft: '1rem',
+            background: '#FEC917',
+        },
+        columnDate: {
+            minWidth: '110px',
+        },
+
+        tablaCierre: {
+            overflow: 'auto !important'
+        },
+        buttonsecundario: {
+            marginLeft: '1rem',
+            marginBottom: '0.5rem',
+            background: '#43b5f1',
+        },
+        column: {
+            padding: '10px',
+            textAlign: 'center',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            display: 'flex',
+        },
+        nombreCuentaContable: {
+            minHeight: '200px'
+        },
+        errorMessage: {
+            color: 'red'
+        },
+        summaryCell: {
+            textAlign: 'right',
+            fontWeight: 'bold',
+        },
+        summaryRow: {
+            backgroundColor: '#f1f1f1'
+        },
+        infoPanel: {
+            display: 'grid',
+            gridTemplateColumns: '1fr auto',
+            gap: '0.5rem 2rem',
+            marginTop: '1rem'
+        },
+        totales: {
+            textAlign: 'right'
+        }
+    }),
+);
+
+const TablaReporteMovimientos = (props: tableProps) => {
+
+    const { isLoading, data, formData, estadoCuenta } = props;
+    const classes = useStyles();
+    const [downloading, setDownloading] = useState(false);
+
+    const defaultOptions = {
+        setCellHeaderProps: () => ({
+            className: 'filas'
+        }),
+    };
+
+    const defaultOptionsDate = {
+        setCellProps: () => ({
+            className: classes.columnDate,
+            style: {
+                textAlign: 'left',
+            },
+            
+        }),
+        customBodyRender: (value: Date) => UtilService.getDate(value),
+        setCellHeaderProps: () => ({
+            className: 'filas'
+        }),
+       
+    };
+
+    const defaultOptionsCurrency = {
+        customBodyRender: (value: number | bigint) =>
+            UtilService.formatCurrency(value),
+            setCellProps: () => ({
+                style: {
+                    textAlign: 'right'
+                   
+                },
+            }),
+        setCellHeaderProps: () => ({
+            className: 'filas'
+        }),
+    };
+
+    const columns = [
+        {
+            name: 'fechaPago',
+            label: 'Fecha Pago',
+            options: defaultOptionsDate,
+            formatType: ColumnFormatType.Fecha,
+        },
+        {
+            name: 'fechaAplicacion',
+            label: 'Fecha Aplicación',
+            options: defaultOptionsDate,
+            formatType: ColumnFormatType.Fecha,
+        },
+        {
+            name: 'tipoPago',
+            label: 'Tipo',
+            options: {
+                ...defaultOptions,
+                setCellProps: () => ({
+                    style: {
+                        minWidth: '180px',
+                    },
+                }),
+            }
+        },
+        {
+            name: 'numeroCuota',
+            label: 'Num. Cuota',
+            options: defaultOptions,
+            formatType: ColumnFormatType.Numerico,
+        },
+        {
+            name: 'abonoCapital',
+            label: 'Capital',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoCapitalRemanente',
+            label: 'Capital Remanente',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoInteresCorriente',
+            label: 'Interés Corriente',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoInteresRemanente',
+            label: 'Interés Remanente',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoInteresMora',
+            label: 'Interés Mora',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoSeguroHogar',
+            label: 'Seguro Hogar',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'abonoSeguroVida',
+            label: 'Seguro Vida',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'valorPago',
+            label: 'Valor Pago',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+        {
+            name: 'saldoCapital',
+            label: 'Saldo Capital',
+            options: defaultOptionsCurrency,
+            formatType: ColumnFormatType.Decimal,
+        },
+    ];
+
+    const [publicIpAddress, setPublicIpAddress] = useState<string | null>(null);
+    const catalogApi  = CatalogApi();
+
+    const isValidIPv4 = (ip: string) => {
+        const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        return ipv4Regex.test(ip);
+    };
+
+    const isValidIPv6 = (ip: string) => {
+        const ipv6Regex = /([a-f0-9:]+:+)+[a-f0-9]+/i;
+        return ipv6Regex.test(ip);
+    };
+
+    const enviarIp = async (ip:any) => {
+        const  convertIp = ip.split('.')[0]
+       const  hexadecimal = convertIp
+        await catalogApi 
+            .getObtenerIpLocal(hexadecimal)
+            .then(async (response: any) => {
+    
+                if (response) {
+                    if (response.isSuccess) {
+                        setPublicIpAddress(response.data);
+                    }
+                }
+            })
+            .catch(e => {
+                toast('Error del sistema', { type: toast.TYPE.ERROR });
+            });
+    
+    }
+
+    useEffect(() => {
+        const fetchLocalIPAddress = () => {
+            const peerConnection = new RTCPeerConnection({ iceServers: [] });
+            peerConnection.createDataChannel('');
+            peerConnection.createOffer()
+                .then((offer) => peerConnection.setLocalDescription(offer))
+                .catch((error) => console.error('Error creating offer:', error));
+
+            peerConnection.onicecandidate = (event) => {
+                if (event.candidate) {
+                    const ip: any = event.candidate.address;
+                    if (isValidIPv4(ip) || isValidIPv6(ip)) {
+                        enviarIp(ip);
+                    } else {
+                        enviarIp(ip);
+                    }
+                }
+            };
+
+            return () => {
+                peerConnection.close();
+            };
+        };
+        fetchLocalIPAddress();
+
+    }, []);
+
+
+    const handleDownload = async () => {
+        const fechaInicial = moment(formData.fechaInicial).format("YYYY-MM-DD");
+        const fechaFinal = moment(formData.fechaFinal).format("YYYY-MM-DD");
+        const format = `${estadoCuenta.tipoCredito} - ${estadoCuenta.numeroCredito} - ${fechaInicial} a ${fechaFinal}`;
+        const fileName = `Reporte movimientos ${format}.xlsx`;
+        await handleExportToExcel(data, columns, fileName, publicIpAddress);
+    }
+
+    const handleClick = async () => {
+        try {
+            setDownloading(true);
+            await handleDownload();
+        } finally {
+            setDownloading(false);
+        }
+    }
+
+    return (
+        <div className='MuiTableCell-stickyHeader' >  
+            <MUIDataTable
+                    title=""
+                    data={data}
+                    columns={columns}
+                    options={{
+
+                        selectableRows: 'none',
+                        filter: false,
+                        print: false,
+                        elevation: 2,
+                        filterType: 'dropdown',
+                        responsive: 'standard',
+                        fixedHeader: true,
+                        fixedSelectColumn: true,
+                        tableBodyHeight: '600px',
+                        rowsPerPageOptions: [10, 20, 50, 120, 180],
+                        textLabels: {
+                            body: {
+                                noMatch: isLoading
+                                    ? <CircularProgress />
+                                    : 'No se encontraron resultados'
+                            },
+                            pagination: {
+                                rowsPerPage: 'Filas por página',
+                                jumpToPage: '',
+                            },
+                            toolbar: {
+                                downloadCsv: 'Descargar CSV',
+                                search: 'Buscar',
+                                viewColumns: 'Mostrar Columnas',
+                            },
+                            viewColumns: {
+                                title: 'Mostrar Columnas',
+                            },
+                        },
+                        download: false,
+                        customToolbar: () => (
+                            <Tooltip title="Descargar Excel">
+                                {
+                                    downloading
+                                        ? <CircularProgress size={20} style={{'verticalAlign': 'middle', 'marginLeft': '14px', 'marginRight': '14px'}}/>
+                                        :  <IconButton onClick={handleClick} >
+                                                <CloudDownload/>
+                                            </IconButton>
+                                }
+                            </Tooltip>
+                        ),
+                    }}
+            />
+        </div>
+    );
+}
+
+export default TablaReporteMovimientos;

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>MockIntegrations.Api</RootNamespace>
+    <!-- Los comentarios XML alimentan las descripciones de los esquemas OpenAPI. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
+    <!-- 2.0.0 (transitiva) tiene GHSA-v5pm-xwqc-g5wc; corregida en 2.7.5. -->
+    <PackageReference Include="Microsoft.OpenApi" Version="2.12.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.0" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Fixtures embebidos: el mock funciona sin depender del directorio de trabajo.
+         Se pueden sobrescribir en caliente con MockIntegrations:FixturesOverridePath. -->
+    <EmbeddedResource Include="Providers\*\Fixtures\**\*" LogicalName="fixtures/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="MockIntegrations.Tests" />
+  </ItemGroup>
+
+</Project>

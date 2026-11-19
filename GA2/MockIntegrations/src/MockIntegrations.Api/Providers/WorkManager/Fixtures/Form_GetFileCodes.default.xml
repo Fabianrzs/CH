@@ -1,0 +1,18 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_GetFileCodesResponse xmlns="http://tempuri.org/">
+      <Form_GetFileCodesResult xmlns:d4p1="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <d4p1:FileProperties>
+          <d4p1:FilePropertiesDto>
+            <d4p1:Code>Code</d4p1:Code>
+            <d4p1:Description>Description</d4p1:Description>
+            <d4p1:Ext>Ext</d4p1:Ext>
+            <d4p1:Size>1</d4p1:Size>
+          </d4p1:FilePropertiesDto>
+        </d4p1:FileProperties>
+        <d4p1:Message>Operación exitosa (MockIntegrations)</d4p1:Message>
+        <d4p1:Success>true</d4p1:Success>
+      </Form_GetFileCodesResult>
+    </Form_GetFileCodesResponse>
+  </s:Body>
+</s:Envelope>

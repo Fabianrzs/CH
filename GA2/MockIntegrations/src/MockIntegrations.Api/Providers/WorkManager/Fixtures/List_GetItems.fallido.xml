@@ -1,0 +1,33 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <List_GetItemsResponse xmlns="http://tempuri.org/">
+      <List_GetItemsResult xmlns:d4p1="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <d4p1:Data>
+          <d4p1:ItemLista>
+            <d4p1:Activo>true</d4p1:Activo>
+            <d4p1:Codigo>Codigo</d4p1:Codigo>
+            <d4p1:Fecha>2026-01-15T00:00:00</d4p1:Fecha>
+            <d4p1:Host>Host</d4p1:Host>
+            <d4p1:IdItem>1</d4p1:IdItem>
+            <d4p1:IdItemPadre>1</d4p1:IdItemPadre>
+            <d4p1:IdLista>1</d4p1:IdLista>
+            <d4p1:Lista>
+              <d4p1:Fecha>2026-01-15T00:00:00</d4p1:Fecha>
+              <d4p1:Host>Host</d4p1:Host>
+              <d4p1:IdLista>1</d4p1:IdLista>
+              <d4p1:IdListaPadre>1</d4p1:IdListaPadre>
+              <d4p1:IdListaV10>1</d4p1:IdListaV10>
+              <d4p1:ItemsLista />
+              <d4p1:Nombre>Nombre</d4p1:Nombre>
+              <d4p1:Usuario>Usuario</d4p1:Usuario>
+            </d4p1:Lista>
+            <d4p1:Nombre>Nombre</d4p1:Nombre>
+            <d4p1:Usuario>Usuario</d4p1:Usuario>
+          </d4p1:ItemLista>
+        </d4p1:Data>
+        <d4p1:Message>Error funcional simulado por MockIntegrations (List_GetItems)</d4p1:Message>
+        <d4p1:Success>false</d4p1:Success>
+      </List_GetItemsResult>
+    </List_GetItemsResponse>
+  </s:Body>
+</s:Envelope>

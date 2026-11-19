@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarGnTerceResponse xmlns="http://seven/">
+      <InsertarGnTerceResult>&lt;GN_TERCE&gt;&lt;RETORNO&gt;1&lt;/RETORNO&gt;&lt;TXTERROR&gt;El tercero ya se encuentra registrado&lt;/TXTERROR&gt;&lt;/GN_TERCE&gt;</InsertarGnTerceResult>
+    </InsertarGnTerceResponse>
+  </s:Body>
+</s:Envelope>

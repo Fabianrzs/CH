@@ -1,0 +1,10 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ChangeNit xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <ter_coda>ter_coda</ter_coda>
+      <ter_codn>ter_codn</ter_codn>
+      <tip_codn>1</tip_codn>
+    </ChangeNit>
+  </s:Body>
+</s:Envelope>

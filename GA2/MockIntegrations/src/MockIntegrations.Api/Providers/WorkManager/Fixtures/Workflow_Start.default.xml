@@ -1,0 +1,14 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Workflow_StartResponse xmlns="http://tempuri.org/">
+      <Workflow_StartResult xmlns:d4p1="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <d4p1:FileCodes xmlns:d5p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <d5p1:string>FileCodes</d5p1:string>
+        </d4p1:FileCodes>
+        <d4p1:Message>Operación exitosa (MockIntegrations)</d4p1:Message>
+        <d4p1:Success>true</d4p1:Success>
+        <d4p1:WorkflowId>{{seq:wm.workflowid:9981}}</d4p1:WorkflowId>
+      </Workflow_StartResult>
+    </Workflow_StartResponse>
+  </s:Body>
+</s:Envelope>

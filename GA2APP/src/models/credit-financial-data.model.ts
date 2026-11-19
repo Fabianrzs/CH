@@ -1,0 +1,30 @@
+export interface CreditFinancialDataModel {
+    sofID: string;
+    socID: string;
+    sofConceptSalary: string;
+    sofConceptSalaryValue: number;
+    sofConcept1: string;
+    sofConcept1Value: number;
+    sofConcept2: string;
+    sofConcept2Value: number;
+    sofConcept3: string;
+    sofConcept3Value: number;
+    sofConcept4: string;
+    sofConcept4Value: number;
+    sofConcept5: string;
+    sofConcept5Value: number;
+    sofConcept6: string;
+    sofConcept6Value: number;
+    sofTotalRevenueValue: number;
+    sofTotalExpensesValue: number;
+    sofHomeAddress: string;
+    sofHomeRegistration: string;
+    sofHomeCommercialValue: number;
+    sofVehicleBrand: string;
+    sofVehiclePlate: string;
+    sofVehicleCommercialValue: number;
+    sofCreatedFor: string;
+    sofCreatedDate: string;
+    sofUpdatedFor: string;
+    sofUpdatedDate: string;
+}

@@ -1,0 +1,9 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GenerarReporte xmlns="http://tempuri.org/">
+      <sReporte>sReporte</sReporte>
+      <customerIdentification>customerIdentification</customerIdentification>
+      <accountId>1</accountId>
+    </GenerarReporte>
+  </s:Body>
+</s:Envelope>

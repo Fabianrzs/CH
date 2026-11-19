@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_GetBase64StringFileResponse xmlns="http://tempuri.org/">
+      <Form_GetBase64StringFileResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </Form_GetBase64StringFileResponse>
+  </s:Body>
+</s:Envelope>

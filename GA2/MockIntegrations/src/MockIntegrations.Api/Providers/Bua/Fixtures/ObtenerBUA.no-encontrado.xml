@@ -1,0 +1,7 @@
+<s:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <ObtenerBUAResponse xmlns="http://tempuri.org/">
+      <ObtenerBUAResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </ObtenerBUAResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_InsertResponse xmlns="http://tempuri.org/">
+      <Form_InsertResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </Form_InsertResponse>
+  </s:Body>
+</s:Envelope>

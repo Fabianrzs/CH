@@ -1,0 +1,32 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarFacturaP xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <pFactura>
+        <vDetalle>
+          <TSPoDfact>
+            <Pro_codi>Pro_codi</Pro_codi>
+            <Dfa_dest>Dfa_dest</Dfa_dest>
+            <Dfa_valo>1.5</Dfa_valo>
+            <Arb_codc>Arb_codc</Arb_codc>
+            <Arb_coda>Arb_coda</Arb_coda>
+            <Arb_codp>Arb_codp</Arb_codp>
+          </TSPoDfact>
+        </vDetalle>
+        <Emp_codi>1</Emp_codi>
+        <Top_codi>1</Top_codi>
+        <Fac_nume>1</Fac_nume>
+        <Fac_fech>2026-01-15T00:00:00</Fac_fech>
+        <Arb_cods>Arb_cods</Arb_cods>
+        <Fac_desc>Fac_desc</Fac_desc>
+        <Pvd_coda>Pvd_coda</Pvd_coda>
+        <Dep_codd>1</Dep_codd>
+        <Fac_pref>Fac_pref</Fac_pref>
+        <Fac_nfap>Fac_nfap</Fac_nfap>
+        <Mon_codi>1</Mon_codi>
+        <Fac_tipo>Fac_tipo</Fac_tipo>
+        <Mpr_cont>1</Mpr_cont>
+        <Fac_feta>2026-01-15T00:00:00</Fac_feta>
+      </pFactura>
+    </InsertarFacturaP>
+  </s:Body>
+</s:Envelope>

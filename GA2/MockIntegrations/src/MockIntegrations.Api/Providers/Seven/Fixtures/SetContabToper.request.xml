@@ -1,0 +1,22 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <SetContabToper xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <pInput>
+        <TToper>
+          <Mco_secu>1</Mco_secu>
+          <Emp_codi>1</Emp_codi>
+          <Top_codi>1</Top_codi>
+          <Mco_nume>1</Mco_nume>
+          <Mco_nech>1.5</Mco_nech>
+          <Arb_cods>Arb_cods</Arb_cods>
+          <Ter_coda>Ter_coda</Ter_coda>
+          <Mco_desc>Mco_desc</Mco_desc>
+          <Mco_valo>1.5</Mco_valo>
+          <Arb_codc>Arb_codc</Arb_codc>
+          <Arb_codp>Arb_codp</Arb_codp>
+          <Arb_coda>Arb_coda</Arb_coda>
+        </TToper>
+      </pInput>
+    </SetContabToper>
+  </s:Body>
+</s:Envelope>

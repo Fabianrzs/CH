@@ -1,0 +1,19 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SyncFaConta xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <cli_coda>cli_coda</cli_coda>
+      <dcl_codd>1</dcl_codd>
+      <con_codi>1</con_codi>
+      <con_nomb>con_nomb</con_nomb>
+      <con_carg>con_carg</con_carg>
+      <con_dire>con_dire</con_dire>
+      <con_dibo>con_dibo</con_dibo>
+      <con_tele>con_tele</con_tele>
+      <con_nufa>con_nufa</con_nufa>
+      <con_mail>con_mail</con_mail>
+      <con_fcum>2026-01-15T00:00:00</con_fcum>
+      <con_afic>con_afic</con_afic>
+    </SyncFaConta>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarDetCDPResponse xmlns="http://seven/">
+      <InsertarDetCDPResult>&lt;RESULTADO&gt;&lt;RETORNO&gt;1&lt;/RETORNO&gt;&lt;TXTERROR&gt;Error de negocio simulado por MockIntegrations (InsertarDetCDP)&lt;/TXTERROR&gt;&lt;/RESULTADO&gt;</InsertarDetCDPResult>
+    </InsertarDetCDPResponse>
+  </s:Body>
+</s:Envelope>

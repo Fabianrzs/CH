@@ -1,0 +1,44 @@
+{
+  "UserConfig": {
+    "Namespaces": [
+      {
+        "Name": "sbemulatorns",
+        "Queues": [],
+        "Topics": [
+          {
+            "Name": "chonorintegraciones",
+            "Properties": {
+              "DefaultMessageTimeToLive": "PT1H",
+              "DuplicateDetectionHistoryTimeWindow": "PT20S",
+              "RequiresDuplicateDetection": false
+            },
+            "Subscriptions": [
+              {
+                "Name": "dodosubscription",
+                "Properties": {
+                  "DeadLetteringOnMessageExpiration": false,
+                  "DefaultMessageTimeToLive": "PT1H",
+                  "LockDuration": "PT1M",
+                  "MaxDeliveryCount": 3,
+                  "ForwardDeadLetteredMessagesTo": "",
+                  "ForwardTo": "",
+                  "RequiresSession": false
+                },
+                "Rules": [
+                  { "Name": "WorkManagerInsertRequest", "Properties": { "FilterType": "Correlation", "CorrelationFilter": { "Label": "WorkManagerInsertRequest" } } },
+                  { "Name": "WorkManagerUpdateRequest", "Properties": { "FilterType": "Correlation", "CorrelationFilter": { "Label": "WorkManagerUpdateRequest" } } },
+                  { "Name": "WorkManagerDeleteRequest", "Properties": { "FilterType": "Correlation", "CorrelationFilter": { "Label": "WorkManagerDeleteRequest" } } },
+                  { "Name": "WorkManagerWorkflowAttachFilesRequest", "Properties": { "FilterType": "Correlation", "CorrelationFilter": { "Label": "WorkManagerWorkflowAttachFilesRequest" } } },
+                  { "Name": "WorkManagerAttachRequest", "Properties": { "FilterType": "Correlation", "CorrelationFilter": { "Label": "WorkManagerAttachRequest" } } }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Logging": {
+      "Type": "File"
+    }
+  }
+}

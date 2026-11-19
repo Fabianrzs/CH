@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <List_GetItemsResponse xmlns="http://tempuri.org/">
+      <List_GetItemsResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </List_GetItemsResponse>
+  </s:Body>
+</s:Envelope>

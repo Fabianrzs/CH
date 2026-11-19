@@ -1,0 +1,36 @@
+export interface CreditSimulationDataModel {
+    tasA_MENSUAL: string;
+    tasA_ANUAL: string;
+    numerO_PREAPROBADO: string;
+    identificationNumber: string;
+    preApprovedNumber: string;
+    propertyType: string;
+    propertyValue: number;
+    loanValue: number;
+    reliefType: string;
+    paymentType: string;
+    rateEAValue: number;
+    rateMVValue: number;
+    rateFreshMVValue: number;
+    visProperty: string;
+    quotaValue: number;
+    quotaWithOutSecure: number;
+    term: number;
+    simulationDate: string;
+    approveDate: string;
+    clientName: string;
+    state: string;
+    city: string;
+    address: string;
+    email: string;
+    phone: string;
+    cellphone: string;
+    force: string;
+    regime: string;
+    category: string;
+    grade: string;
+    creditType: number;
+    years: number;
+    tipoVivienda: string;
+    tipoAbono: string;
+}

@@ -1,0 +1,40 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SyncFaClien xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <tip_codi>1</tip_codi>
+      <ter_coda>ter_coda</ter_coda>
+      <cli_dive>1</cli_dive>
+      <cli_nomb>cli_nomb</cli_nomb>
+      <cli_apel>cli_apel</cli_apel>
+      <cli_noco>cli_noco</cli_noco>
+      <mod_codi>1</mod_codi>
+      <pai_codi>1</pai_codi>
+      <dep_codi>1</dep_codi>
+      <mun_codi>1</mun_codi>
+      <cli_coda>cli_coda</cli_coda>
+      <tcl_codi>1</tcl_codi>
+      <cal_codi>1</cal_codi>
+      <coc_codi>1</coc_codi>
+      <cim_codi>1</cim_codi>
+      <arb_csuc>arb_csuc</arb_csuc>
+      <dcl_dire>dcl_dire</dcl_dire>
+      <dcl_ntel>dcl_ntel</dcl_ntel>
+      <dcl_mail>dcl_mail</dcl_mail>
+      <dcl_nfax>dcl_nfax</dcl_nfax>
+      <arb_clte>arb_clte</arb_clte>
+      <cli_inna>cli_inna</cli_inna>
+      <ven_codi>1.5</ven_codi>
+      <arb_ccec>arb_ccec</arb_ccec>
+      <lis_codi>1</lis_codi>
+      <dcl_obse>dcl_obse</dcl_obse>
+      <dcl_apar>dcl_apar</dcl_apar>
+      <dcl_cloc>dcl_cloc</dcl_cloc>
+      <cli_anex>cli_anex</cli_anex>
+      <cli_hpra>cli_hpra</cli_hpra>
+      <cli_fecm>1</cli_fecm>
+      <cli_feca>1</cli_feca>
+      <cli_audp>cli_audp</cli_audp>
+    </SyncFaClien>
+  </s:Body>
+</s:Envelope>

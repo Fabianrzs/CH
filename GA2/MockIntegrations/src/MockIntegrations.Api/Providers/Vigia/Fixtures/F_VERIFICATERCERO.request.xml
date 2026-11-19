@@ -1,0 +1,9 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <q1:F_VERIFICATERCERO xmlns:q1="https://vigia.cajahonor.gov.co/WebSvc">
+      <param1 xsi:type="xsd:string">param1</param1>
+      <param2 xsi:type="xsd:string">param2</param2>
+      <param3 xsi:type="xsd:string">param3</param3>
+    </q1:F_VERIFICATERCERO>
+  </s:Body>
+</s:Envelope>

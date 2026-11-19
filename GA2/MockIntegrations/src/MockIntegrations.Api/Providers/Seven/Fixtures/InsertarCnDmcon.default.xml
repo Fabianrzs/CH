@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarCnDmconResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <InsertarCnDmconResult>&lt;RESULTADO&gt;&lt;RETORNO&gt;0&lt;/RETORNO&gt;&lt;TXTERROR&gt;&lt;/TXTERROR&gt;&lt;/RESULTADO&gt;</InsertarCnDmconResult>
+    </InsertarCnDmconResponse>
+  </s:Body>
+</s:Envelope>

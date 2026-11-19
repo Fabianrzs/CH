@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <AnularCnMcontResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <AnularCnMcontResult>&lt;CN_MCONT&gt;&lt;RETORNO&gt;0&lt;/RETORNO&gt;&lt;TXTERROR&gt;&lt;/TXTERROR&gt;&lt;/CN_MCONT&gt;</AnularCnMcontResult>
+    </AnularCnMcontResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,149 @@
+<SolicitudLeasingHabitacional xmlns="http://www.cajahonor.gov.co/solicitud-leasing">
+	<FechaDiligenciamiento>2025-05-04</FechaDiligenciamiento>
+
+	<InformacionPersonal>
+		<PrimerApellido>...</PrimerApellido>
+		<SegundoApellido>...</SegundoApellido>
+		<PrimerNombre>...</PrimerNombre>
+		<SegundoNombre>...</SegundoNombre>
+		<TipoDocumento>CC</TipoDocumento>
+		<NumeroDocumento>...</NumeroDocumento>
+		<LugarExpedicion>...</LugarExpedicion>
+		<FechaExpedicion>...</FechaExpedicion>
+		<FechaNacimiento>...</FechaNacimiento>
+		<LugarNacimiento>...</LugarNacimiento>
+		<Sexo>M</Sexo>
+		<EstadoCivil>...</EstadoCivil>
+		<Nacionalidad>Colombiana</Nacionalidad>
+		<NumeroPersonasACargo>0</NumeroPersonasACargo>
+		<DireccionResidencia>...</DireccionResidencia>
+		<CiudadResidencia>...</CiudadResidencia>
+		<DepartamentoResidencia>...</DepartamentoResidencia>
+		<TelefonoFijo>...</TelefonoFijo>
+		<Celular>...</Celular>
+		<CorreoElectronico>...</CorreoElectronico>
+		<MedioInformacion>CorreoElectronico</MedioInformacion>
+	</InformacionPersonal>
+
+	<InformacionLaboral>
+		<Actividad>Empleado</Actividad>
+		<Profesion>...</Profesion>
+		<Empresa>...</Empresa>
+		<Cargo>...</Cargo>
+		<CiudadEmpresa>...</CiudadEmpresa>
+		<DepartamentoEmpresa>...</DepartamentoEmpresa>
+		<TelefonoEmpresa>...</TelefonoEmpresa>
+		<CorreoElectronicoEmpresa>...</CorreoElectronicoEmpresa>
+		<CodigoCIIU>...</CodigoCIIU>
+		<ManejaRecursosPublicos>No</ManejaRecursosPublicos>
+	</InformacionLaboral>
+
+	<InformacionConyuge>
+		<TipoDocumento>CC</TipoDocumento>
+		<NumeroDocumento>...</NumeroDocumento>
+		<LugarExpedicion>...</LugarExpedicion>
+		<FechaExpedicion>...</FechaExpedicion>
+		<FechaNacimiento>...</FechaNacimiento>
+		<PrimerApellido>...</PrimerApellido>
+		<SegundoApellido>...</SegundoApellido>
+		<PrimerNombre>...</PrimerNombre>
+		<SegundoNombre>...</SegundoNombre>
+		<Telefono>...</Telefono>
+		<Celular>...</Celular>
+	</InformacionConyuge>
+
+	<InformacionFinanciera>
+		<IngresosMensualesLaborales>...</IngresosMensualesLaborales>
+		<OtrosIngresos>...</OtrosIngresos>
+		<TotalIngresos>...</TotalIngresos>
+		<EgresosMensuales>...</EgresosMensuales>
+		<TotalEgresos>...</TotalEgresos>
+		<TotalActivos>...</TotalActivos>
+		<TotalPasivos>...</TotalPasivos>
+		<DeclaraRenta>Si</DeclaraRenta>
+		<TransaccionesMonedaExtranjera>
+			<Realiza>Si</Realiza>
+			<Tipo>Exportaciones</Tipo>
+			<Banco>...</Banco>
+			<NumeroProducto>...</NumeroProducto>
+			<Moneda>COP</Moneda>
+			<Monto>...</Monto>
+		</TransaccionesMonedaExtranjera>
+	</InformacionFinanciera>
+
+	<Bienes>
+		<Vehiculos>
+			<Tipo>Carro</Tipo>
+			<Descripcion>...</Descripcion>
+			<Valor>...</Valor>
+		</Vehiculos>
+		<Inmuebles>
+			<Tipo>Casa</Tipo>
+			<Direccion>...</Direccion>
+			<Ciudad>...</Ciudad>
+			<Departamento>...</Departamento>
+			<Estrato>...</Estrato>
+			<Edad>...</Edad>
+			<Parqueadero>Si</Parqueadero>
+		</Inmuebles>
+	</Bienes>
+
+	<InformacionCreditoVivienda>
+		<TipoCredito>LeasingHabitacional</TipoCredito>
+		<TipoInmueble>Privado</TipoInmueble>
+		<ValorVenta>...</ValorVenta>
+		<Direccion>...</Direccion>
+		<Ciudad>...</Ciudad>
+		<Piso>...</Piso>
+		<Ascensor>Si</Ascensor>
+		<ActividadEconomica>...</ActividadEconomica>
+		<AfectacionViviendaFamiliar>No</AfectacionViviendaFamiliar>
+		<Hipoteca>Si</Hipoteca>
+		<PatrimonioFamilia>Si</PatrimonioFamilia>
+	</InformacionCreditoVivienda>
+
+	<Referencias>
+		<Familiar>
+			<NombreCompleto>...</NombreCompleto>
+			<Parentesco>...</Parentesco>
+			<Direccion>...</Direccion>
+			<Ciudad>...</Ciudad>
+			<Telefono>...</Telefono>
+			<Celular>...</Celular>
+		</Familiar>
+		<Personal>
+			<NombreCompleto>...</NombreCompleto>
+			<Direccion>...</Direccion>
+			<Ciudad>...</Ciudad>
+			<Telefono>...</Telefono>
+			<Celular>...</Celular>
+		</Personal>
+	</Referencias>
+
+	<Declaraciones>
+		<OrigenFondos>Los ingresos no provienen de actividades ilícitas</OrigenFondos>
+		<AutorizacionConsultaCentralesRiesgo>Si</AutorizacionConsultaCentralesRiesgo>
+		<AutorizacionUsoDatos>Si</AutorizacionUsoDatos>
+	</Declaraciones>
+
+	<PEP>
+		<EsPEP>No</EsPEP>
+		<TipoPEP>No aplica</TipoPEP>
+		<VinculosPEP>No</VinculosPEP>
+	</PEP>
+
+	<Entrevista>
+		<Entrevistador>...</Entrevistador>
+		<Fecha>2025-05-04</Fecha>
+		<Hora>10:30</Hora>
+		<Ciudad>Pasto</Ciudad>
+	</Entrevista>
+
+	<DocumentosAdjuntos>
+		<FotocopiaCedula>Si</FotocopiaCedula>
+		<CertificadoIngresos>Si</CertificadoIngresos>
+		<DeclaracionRenta>Si</DeclaracionRenta>
+		<LibretaMilitar>Si</LibretaMilitar>
+		<DeclaracionFondos>Si</DeclaracionFondos>
+	</DocumentosAdjuntos>
+</SolicitudLeasingHabitacional>

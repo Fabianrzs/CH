@@ -1,0 +1,21 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarCnDmcon xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <emp_codi>1</emp_codi>
+      <mco_cont>1</mco_cont>
+      <cue_codi>cue_codi</cue_codi>
+      <dmc_desc>dmc_desc</dmc_desc>
+      <dmc_cant>1.5</dmc_cant>
+      <dmc_acti>1.5</dmc_acti>
+      <dmc_refe>dmc_refe</dmc_refe>
+      <dmc_vadb>1.5</dmc_vadb>
+      <dmc_vacr>1.5</dmc_vacr>
+      <dmc_vaba>1.5</dmc_vaba>
+      <ter_coda>ter_coda</ter_coda>
+      <arb_codc>arb_codc</arb_codc>
+      <arb_codp>arb_codp</arb_codp>
+      <arb_coda>arb_coda</arb_coda>
+      <arb_cods>arb_cods</arb_cods>
+    </InsertarCnDmcon>
+  </s:Body>
+</s:Envelope>

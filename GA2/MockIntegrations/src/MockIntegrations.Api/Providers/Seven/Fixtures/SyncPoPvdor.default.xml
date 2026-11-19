@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SyncPoPvdorResponse xmlns="http://seven/">
+      <SyncPoPvdorResult>&lt;PO_PVDOR&gt;&lt;RETORNO&gt;0&lt;/RETORNO&gt;&lt;TXTERROR&gt;&lt;/TXTERROR&gt;&lt;PVD_CODD&gt;{{seq:seven.pvd_codd:900123}}&lt;/PVD_CODD&gt;&lt;/PO_PVDOR&gt;</SyncPoPvdorResult>
+    </SyncPoPvdorResponse>
+  </s:Body>
+</s:Envelope>

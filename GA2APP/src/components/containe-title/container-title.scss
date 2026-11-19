@@ -1,0 +1,49 @@
+.container-25{
+    width: auto;
+    padding: 2em;
+}
+
+.container-ico-t{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative
+}
+.container-ico-t .ico{
+    position: absolute;
+}
+.container-ico-t .ico .ico-a{
+    left: 0;
+}
+
+.tittle-tab{
+    font-size: 1em;
+    margin-left: 2.5em;
+}
+
+.tittle-we{
+    font-weight: 600;
+}
+
+.icoLit-2{
+    font-size: 0.8em;
+}
+
+.ico-b{
+    left: 10px;
+    top: 5px;
+}
+
+.blue-2{
+    color: #1c3b90;
+}
+
+.bggray-2{
+    background-color: #dee1eb;
+}
+
+.icoLit {
+    font-size: 2em;
+}

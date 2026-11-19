@@ -1,0 +1,15 @@
+export default interface ReporteEstadoMovimientos {
+    numeroCuota: number,
+    fechaAplicacion: Date,
+    fechaPago: Date,
+    abonoCapital: number,
+    abonoInteresCorriente: number,
+    abonoSeguroVida: number,
+    abonoSeguroHogar: number,
+    abonoCapitalRemanente: number,
+    abonoInteresRemanente: number,
+    abonoInteresMora: number,
+    valorPago: number,
+    tipoPago: string,
+    saldoCapital: number,
+}

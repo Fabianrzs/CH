@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ExecuteXMLStringResponse xmlns="http://tempuri.org/">
+      <ExecuteXMLStringResult>&lt;DCResponse&gt;&lt;Status&gt;Success&lt;/Status&gt;&lt;Authentication&gt;&lt;Status&gt;Success&lt;/Status&gt;&lt;Token&gt;token-tu&lt;/Token&gt;&lt;/Authentication&gt;&lt;ResponseInfo&gt;&lt;ApplicationId&gt;9876543&lt;/ApplicationId&gt;&lt;SolutionSetInstanceId&gt;abc-123&lt;/SolutionSetInstanceId&gt;&lt;CurrentQueue&gt;PhoneSelection&lt;/CurrentQueue&gt;&lt;/ResponseInfo&gt;&lt;ContextData&gt;&lt;Field key="HasError"&gt;False&lt;/Field&gt;&lt;Field key="Applicants"&gt;&amp;lt;Applicants&amp;gt;&amp;lt;Applicant&amp;gt;&amp;lt;IdType&amp;gt;0&amp;lt;/IdType&amp;gt;&amp;lt;IdNumber&amp;gt;1020304050&amp;lt;/IdNumber&amp;gt;&amp;lt;DocumentState&amp;gt;VIGENTE&amp;lt;/DocumentState&amp;gt;&amp;lt;/Applicant&amp;gt;&amp;lt;/Applicants&amp;gt;&lt;/Field&gt;&lt;/ContextData&gt;&lt;/DCResponse&gt;</ExecuteXMLStringResult>
+    </ExecuteXMLStringResponse>
+  </s:Body>
+</s:Envelope>

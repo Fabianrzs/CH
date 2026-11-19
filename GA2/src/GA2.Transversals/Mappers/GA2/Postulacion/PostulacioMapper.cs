@@ -1,0 +1,297 @@
+﻿using AutoMapper;
+using GA2.Application.Dto;
+using GA2.Application.Dto.Postulacion;
+using GA2.Domain.Entities;
+using GA2.Domain.Entities.Postulacion;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GA2.Transversals.Mappers.GA2
+{
+    public class PostulacioMapper:Profile
+    {
+        public PostulacioMapper()
+        {
+            CreateMap<SolicitudPostulante, SolicitudPostulacionDto>()
+              .ForMember(x => x.IdSolicitud, map => map.MapFrom(dto => dto.SPO_ID_SOLICITUD))
+             .ForMember(x => x.NumeroDocumeto, map => map.MapFrom(dto => dto.SPO_NUMERO_DOCUMENTO))
+             .ForMember(x => x.IdTipoSolicitud, map => map.MapFrom(dto => dto.SPO_ID_TIPO_DE_SOLICITUD))
+             .ForMember(x => x.IdModalidad, map => map.MapFrom(dto => dto.SPO_ID_MODALIDAD))
+             .ForMember(x => x.IdSubModalidad, map => map.MapFrom(dto => dto.SPO_ID_SUBMODALIDAD))
+             .ForMember(x => x.ManifestacionAutorizacion, map => map.MapFrom(dto => dto.SPO_MANIFESTACION_AUTORIZACIONES))
+             .ForMember(x => x.Departamento1, map => map.MapFrom(dto => dto.SPO_DEPARTAMENTO_PREFERENCIA1))
+             .ForMember(x => x.Ciuadad1, map => map.MapFrom(dto => dto.SPO_CIUDAD_PREFERENCIA1))
+             .ForMember(x => x.Departameno2, map => map.MapFrom(dto => dto.SPO_DEPARTAMENTO_PREFERENCIA2))
+             .ForMember(x => x.Ciudad2, map => map.MapFrom(dto => dto.SPO_CIUDAD_PREFERENCIA2))
+             .ForMember(x => x.Deparmento3, map => map.MapFrom(dto => dto.SPO_DEPARTAMENTO_PREFERENCIA3))
+             .ForMember(x => x.Ciudad3, map => map.MapFrom(dto => dto.SPO_CIUDAD_PREFERENCIA3))
+             .ForMember(x => x.FirmaSolicitud, map => map.MapFrom(dto => dto.SPO_TIPO_DOCUMENTO_FIRMA_SOLICITUD))
+             .ForMember(x => x.NumeroDocumentoFirma, map => map.MapFrom(dto => dto.SPO_NUMERO_DOCUMENTO_FIRMA_SOLICITUD))
+             .ForMember(x => x.FechaExpedicion, map => map.MapFrom(dto => dto.SPO_FECHAEXPEDICION))
+             .ForMember(x => x.NumeroCelular, map => map.MapFrom(dto => dto.SPO_NUMERO_CELULAR))
+             .ForMember(x => x.NumeroConvocatoria, map => map.MapFrom(dto => dto.SPO_NUMERO_CONVOCATORIA))
+             .ForMember(x => x.EstadoPostulacion, map => map.MapFrom(dto => dto.SPO_ESTADO))
+             .ForMember(x => x.ActividadPostulacion, map => map.MapFrom(dto => dto.ACTIVIDA_POSTULACION))
+             .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.SPO_OBSERVACION))
+              .ForMember(x => x.NombreFirma, map => map.MapFrom(dto => dto.SPO_NOMBRES_FIRMA))
+              .ForMember(x => x.ApeliidoFirma, map => map.MapFrom(dto => dto.SPO_APELLIDOS_FIRMA))
+              .ForMember(x => x.TipoDocumentoId, map => map.MapFrom(dto => dto.SPO_TIPO_DOCUMENTO_ID))
+              .ForMember(x => x.RepresentanteLegal, map => map.MapFrom(dto => dto.SPO_REPRESENTANTE_LEGAL))
+              .ForMember(x => x.SpoDistruePension, map => map.MapFrom(dto => dto.SPO_DISFRUTE_PENSION))
+              .ForMember(x => x.SpoUnidadEjecutora, map => map.MapFrom(dto => dto.SPO_UNIDAD_EJECUTORA))
+              .ForMember(x => x.SpoCategoria, map => map.MapFrom(dto => dto.SPO_CATEGORIA))
+              .ForMember(x => x.NombreCompletoAfiliado, map => map.MapFrom(dto => dto.SPO_NOMBRE_AFILIADO_PRINCIPAL))
+               .ForMember(x => x.ModalidadSolucionVivienda, map => map.MapFrom(dto => dto.ModalidadSolucionVivienda))
+               .ForMember(x => x.AfectacionCuenta, map => map.MapFrom(dto => dto.AfectacionCuenta))
+               .ForMember(x => x.ValorAfectacion, map => map.MapFrom(dto => dto.ValorAfectacion))
+               .ForMember(x => x.IdConvocatoria, map => map.MapFrom(dto => dto.IdConvocatoria))
+               .ForMember(x => x.Fuerza, map => map.MapFrom(dto => dto.Fuerza))
+               .ForMember(x => x.FechaRetiroFuerza, map => map.MapFrom(dto => dto.SPO_FECHA_RETIRO_FUERZA))
+               .ForMember(x => x.MismoAfiliado, map => map.MapFrom(dto => dto.SPO_MISMO_AFILIADO))
+             .ReverseMap();
+
+            CreateMap<Postulante, PostulanteDto>()
+                     .ForMember(x => x.IdSolicitud, map => map.MapFrom(dto => dto.POS_ID_SOLICIUD))
+                     .ForMember(x => x.Nombre, map => map.MapFrom(dto => dto.POS_NOMBRE))
+                     .ForMember(x => x.Apellido, map => map.MapFrom(dto => dto.POS_APELLIDO))
+                     .ForMember(x => x.TipoDocumentoId, map => map.MapFrom(dto => dto.POS_ID_TIPO_DOCUMENTO))
+                     .ForMember(x => x.NumeroDocumento, map => map.MapFrom(dto => dto.POS_NUMERO_DOCUMENTO))
+                     .ForMember(x => x.DepartamentoExpedicion, map => map.MapFrom(dto => dto.POS_DEPARMENTO_EXPEDICION))
+                     .ForMember(x => x.CiudadExpedicion, map => map.MapFrom(dto => dto.POS_CIUDAD_EXPEDICION))
+                     .ForMember(x => x.Parentesco, map => map.MapFrom(dto => dto.POS_PARENTESCO))
+                     .ForMember(x => x.Sexo, map => map.MapFrom(dto => dto.POS_SEXO))
+                     .ForMember(x => x.FechaNacimiento, map => map.MapFrom(dto => dto.POS_FECHA_NACIMIENTO))
+                     .ForMember(x => x.EstadoCivil, map => map.MapFrom(dto => dto.POS_ESTADO_CIVIL))
+                     .ForMember(x => x.Ocupacion, map => map.MapFrom(dto => dto.POS_OCUPACION))
+                     .ForMember(x => x.NivelEducativo, map => map.MapFrom(dto => dto.POS_NIVEL_EDUCATIVO))
+                     .ForMember(x => x.AfectionFisica, map => map.MapFrom(dto => dto.POS_AFECTACION_FISICA))
+                     .ForMember(x => x.EnfermedadEspecifica, map => map.MapFrom(dto => dto.POS_ENFERMEDADESPECIFICA))
+                      .ForMember(x => x.TratamientoMedico, map => map.MapFrom(dto => dto.POS_DIFICULTADESCALERAS))
+                     .ForMember(x => x.MedicoPermanente, map => map.MapFrom(dto => dto.POS_MEDICAMENTOPERMANENTE))
+                     .ForMember(x => x.AyudaTecnica, map => map.MapFrom(dto => dto.POS_AYUDATECNICASENSORIAL))
+                     .ForMember(x => x.CondicionSalud, map => map.MapFrom(dto => dto.POS_CONDICIONSALUD))
+                     .ForMember(x => x.TipoIntegranteId, map => map.MapFrom(dto => dto.TipoIntegranteId))
+                     .ForMember(x => x.TipoParentescoId, map => map.MapFrom(dto => dto.TipoParentescoId))
+                     .ForMember(x => x.TipAyudaTecnicaId, map => map.MapFrom(dto => dto.TipAyudaTecnicaId))
+                     .ForMember(x => x.TipoDiscapacidadId, map => map.MapFrom(dto => dto.TipoDiscapacidadId))
+                     .ForMember(x => x.PorcentajePostulacion, map => map.MapFrom(dto => dto.PorcentajePostulacion))
+                     .ForMember(x => x.PorcentajeAportes, map => map.MapFrom(dto => dto.PorcentajeAportes))
+                      .ForMember(x => x.PorcentajeCesantias, map => map.MapFrom(dto => dto.PorcentajeCesantias))
+                     .ReverseMap();
+
+            CreateMap<SolicitudPostulacionResponse, SolicituPostulancionResponseDto>()
+                     .ForMember(x => x.IdSolicitud, map => map.MapFrom(dto => dto.SolicitudId))
+                     .ForMember(x => x.TipoDocumentoId, map => map.MapFrom(dto => dto.TipoDocumentoId))
+                     .ForMember(x => x.NumeroDocumeto, map => map.MapFrom(dto => dto.NumeroDocumento))
+                     .ForMember(x => x.IdTipoSolicitud, map => map.MapFrom(dto => dto.TipoSolicitudId))
+                     .ForMember(x => x.IdModalidad, map => map.MapFrom(dto => dto.TipoModalidadId))
+                     .ForMember(x => x.IdSubModalidad, map => map.MapFrom(dto => dto.TipoSubModalidadId))
+                     .ForMember(x => x.NumeroConvocatoria, map => map.MapFrom(dto => dto.NumeroConvocatoria))
+                     .ForMember(x => x.ManifestacionAutorizacion, map => map.MapFrom(dto => dto.ManifestacionAutorizacion))
+                     .ForMember(x => x.Departamento1, map => map.MapFrom(dto => dto.Departamento1))
+                     .ForMember(x => x.Ciuadad1, map => map.MapFrom(dto => dto.Ciudad1))
+                     .ForMember(x => x.Departameno2, map => map.MapFrom(dto => dto.Deparamento2))
+                     .ForMember(x => x.Ciudad2, map => map.MapFrom(dto => dto.Ciudad2))
+                     .ForMember(x => x.Deparmento3, map => map.MapFrom(dto => dto.Deparamento3))
+                     .ForMember(x => x.Ciudad3, map => map.MapFrom(dto => dto.Ciudad3))
+                     .ForMember(x => x.FirmaSolicitud, map => map.MapFrom(dto => dto.CodigoIdentificacionFirma))
+                     .ForMember(x => x.NumeroDocumentoFirma, map => map.MapFrom(dto => dto.NumeroDocumentoFirma))
+                     .ForMember(x => x.FechaExpedicion, map => map.MapFrom(dto => dto.FechaExpedicion))
+                     .ForMember(x => x.NumeroCelular, map => map.MapFrom(dto => dto.NumeroCelular))
+                     .ForMember(x => x.TipoSolicitudNombre, map => map.MapFrom(dto => dto.TipoSolicitudNombre))
+                     .ForMember(x => x.TipoModalidadNombre, map => map.MapFrom(dto => dto.TipoModalidadNombre))
+                     .ForMember(x => x.NumeroDocumentoFirma, map => map.MapFrom(dto => dto.NumeroDocumentoFirma))
+                     .ForMember(x => x.TipoSubModalidadNombre, map => map.MapFrom(dto => dto.TipoSubModalidadNombre))
+                     .ForMember(x => x.EstadoProceso, map => map.MapFrom(dto => dto.EtapaProceso))
+                     .ForMember(x => x.Actividad, map => map.MapFrom(dto => dto.Actividad))
+                     .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.Observacion))
+                     .ForMember(x => x.ObservacionDocumento, map => map.MapFrom(dto => dto.ObservacionDocumento))
+                     .ForMember(x => x.NombreFirma, map => map.MapFrom(dto => dto.NombreFirma))
+                     .ForMember(x => x.ApellidoFirma, map => map.MapFrom(dto => dto.ApellidoFirma))
+                     .ForMember(x => x.FechaCreacion, map => map.MapFrom(dto => dto.FechaCreacion))
+                     .ForMember(x => x.NombreCompleto, map => map.MapFrom(dto => dto.NombreCompleto))
+                     .ForMember(x => x.RepresentanteLegal, map => map.MapFrom(dto => dto.RepresentanteLegal))
+                     .ForMember(x => x.DisfrutePension, map => map.MapFrom(dto => dto.DisfrutePension))
+                     .ForMember(x => x.HechoDescripcion, map => map.MapFrom(dto => dto.HechoDescripcion))
+                     .ForMember(x => x.Categoria, map => map.MapFrom(dto => dto.Categoria))
+                     .ForMember(x => x.UnidadEjecutora, map => map.MapFrom(dto => dto.UnidadEjecutora))
+                     .ForMember(x => x.NombreCompletoAfiliado, map => map.MapFrom(dto => dto.NombreCompletoAfiliado))
+                     .ForMember(x => x.NoConvocatoria, map => map.MapFrom(dto => dto.NoConvocatoria))
+                     .ForMember(x => x.UserName, map => map.MapFrom(dto => dto.UserName))
+                     .ForMember(x => x.NoRadicado, map => map.MapFrom(dto => dto.NoRadicado))
+                      .ForMember(x => x.FechaApertura, map => map.MapFrom(dto => dto.FechaApertura))
+                     .ForMember(x => x.NumeroResolucion, map => map.MapFrom(dto => dto.NumeroResolucion))
+                     .ForMember(x => x.FechaCierre, map => map.MapFrom(dto => dto.FechaCierre))
+                     .ForMember(x => x.ModalidadSolucionVivienda, map => map.MapFrom(dto => dto.ModalidadSolucionVivienda))
+                     .ForMember(x => x.AfectacionCuenta, map => map.MapFrom(dto => dto.AfectacionCuenta))
+                     .ForMember(x => x.ValorAfectacion, map => map.MapFrom(dto => dto.ValorAfectacion))
+                     .ForMember(x => x.UserId, map => map.MapFrom(dto => dto.UserId))
+                      .ForMember(x => x.FechaAsignacionInvalidez, map => map.MapFrom(dto => dto.FechaAsignacionInvalidez))
+                       .ForMember(x => x.FechaRetiroFuerza, map => map.MapFrom(dto => dto.FechaRetiroFuerza))
+                       .ForMember(x => x.MismoAfiliado, map => map.MapFrom(dto => dto.MismoAfiliado))
+                       .ForMember(x => x.FechaRetiro, map => map.MapFrom(dto => dto.FechaRetiro))
+
+                     .ReverseMap();
+
+            CreateMap<PostulanteResponse, PostulanteResponseDto>()
+                     .ForMember(x => x.Nombre, map => map.MapFrom(dto => dto.NombrePostulante))
+                     .ForMember(x => x.Apellido, map => map.MapFrom(dto => dto.ApellidoPostulante))
+                     .ForMember(x => x.TipoDocumentoId, map => map.MapFrom(dto => dto.CodigoIdentificacion))
+                     // .ForMember(x => x.Ti, map => map.MapFrom(dto => dto.nombreIdentificacion))
+                     .ForMember(x => x.NumeroDocumento, map => map.MapFrom(dto => dto.NumeroDocumentoPostulante))
+                     .ForMember(x => x.DepartamentoExpedicion, map => map.MapFrom(dto => dto.Departamento))
+                     .ForMember(x => x.CiudadExpedicion, map => map.MapFrom(dto => dto.Ciudad))
+                     .ForMember(x => x.Parentesco, map => map.MapFrom(dto => dto.parentesco))
+                     .ForMember(x => x.Sexo, map => map.MapFrom(dto => dto.Sexo))
+                     .ForMember(x => x.FechaNacimiento, map => map.MapFrom(dto => dto.fechaNacimiento))
+                     .ForMember(x => x.EstadoCivil, map => map.MapFrom(dto => dto.EstadoCivil))
+                     .ForMember(x => x.Ocupacion, map => map.MapFrom(dto => dto.Ocupacion))
+                     .ForMember(x => x.NivelEducativo, map => map.MapFrom(dto => dto.NivelEducativo))
+                     .ForMember(x => x.AfectionFisica, map => map.MapFrom(dto => dto.AfectacionFisica))
+                      .ForMember(x => x.AfectacionSensorial, map => map.MapFrom(dto => dto.AfectacionSensorial))
+                     .ForMember(x => x.EnfermedadEspecifica, map => map.MapFrom(dto => dto.EnfermedadesEspecificas))
+                     .ForMember(x => x.TratamientoMedico, map => map.MapFrom(dto => dto.TratamientoMedico))
+                     .ForMember(x => x.DificultadEscaleras, map => map.MapFrom(dto => dto.DificultaEscaleras))
+                     .ForMember(x => x.MedicoPermanente, map => map.MapFrom(dto => dto.MedicamentoPermanente))
+                     .ForMember(x => x.AyudaTecnica, map => map.MapFrom(dto => dto.AyudaTecnica))
+                     .ForMember(x => x.CondicionSalud, map => map.MapFrom(dto => dto.CondicionSalud))
+                     .ForMember(x => x.TipoIntegranteId, map => map.MapFrom(dto => dto.TipoIntegranteId))
+                     .ForMember(x => x.TipoParentescoId, map => map.MapFrom(dto => dto.TipoParentescoId))
+                     .ForMember(x => x.TipAyudaTecnicaId, map => map.MapFrom(dto => dto.TipAyudaTecnicaId))
+                     .ForMember(x => x.TipoDiscapacidadId, map => map.MapFrom(dto => dto.TipoDiscapacidadId))
+                     .ForMember(x => x.PorcentajePostulacion, map => map.MapFrom(dto => dto.PorcentajePostulacion))
+                     .ForMember(x => x.PorcentajeAportes, map => map.MapFrom(dto => dto.PorcentajeAportes))
+                     .ForMember(x => x.PorcentajeCesantias, map => map.MapFrom(dto => dto.PorcentajeCesantias))
+
+                     .ReverseMap();
+
+            CreateMap<ArchivoSolicitud, ArchivoSolicitudDto>()
+                .ForMember(x => x.Id, map => map.MapFrom(dto => dto.IdArchivo))
+                .ForMember(x => x.NombreArchivo, map => map.MapFrom(dto => dto.NombreArchivo))
+                .ForMember(x => x.RutaArchivo, map => map.MapFrom(dto => dto.RutaArchivo))
+                .ForMember(x => x.Extension, map => map.MapFrom(dto => dto.Extension))
+                .ForMember(x => x.NombreArchivo, map => map.MapFrom(dto => dto.NombreArchivo))
+                .ForMember(x => x.Orden, map => map.MapFrom(dto => dto.Orden))
+                .ReverseMap();
+
+            CreateMap<Entrevista, EntrevistaDto>()
+           .ForMember(x => x.EFS_ID_SOLICITUD, map => map.MapFrom(dto => dto.EFS_ID_SOLICITUD))
+           .ForMember(x => x.EFS_VIVIENDA_PROPIA, map => map.MapFrom(dto => dto.EFS_VIVIENDA_PROPIA))
+           .ForMember(x => x.EFS_TIPO_VIVIENDA, map => map.MapFrom(dto => dto.EFS_TIPO_VIVIENDA))
+           .ForMember(x => x.EFS_HABITANTE, map => map.MapFrom(dto => dto.EFS_HABITANTE))
+           .ForMember(x => x.EFS_INFORMATIVO_ADMIN, map => map.MapFrom(dto => dto.EFS_INFORMATIVO_ADMIN))
+           .ForMember(x => x.EFS_CONCEPTO_PSICOSOCIAL, map => map.MapFrom(dto => dto.EFS_CONCEPTO_PSICOSOCIAL))
+           .ForMember(x => x.EFS_OBSERVACION, map => map.MapFrom(dto => dto.EFS_OBSERVACION))
+           .ForMember(x => x.UserId, map => map.MapFrom(dto => dto.UserId))
+           .ReverseMap();
+
+            CreateMap<EntrevistaResponse, EntresvistaResponseDto>()
+           .ForMember(x => x.EFS_ID, map => map.MapFrom(dto => dto.EFS_ID))
+           .ForMember(x => x.EFS_ID_SOLICITUD, map => map.MapFrom(dto => dto.EFS_ID_SOLICITUD))
+           .ForMember(x => x.EFS_TIPO_BENEFICIO, map => map.MapFrom(dto => dto.EFS_TIPO_BENEFICIO))
+           .ForMember(x => x.EFS_VIVIENDA_PROPIA, map => map.MapFrom(dto => dto.EFS_VIVIENDA_PROPIA))
+           .ForMember(x => x.EFS_TIPO_VIVIENDA, map => map.MapFrom(dto => dto.EFS_TIPO_VIVIENDA))
+           .ForMember(x => x.EFS_HABITANTE, map => map.MapFrom(dto => dto.EFS_HABITANTE))
+           .ForMember(x => x.EFS_CAUSAL, map => map.MapFrom(dto => dto.EFS_CAUSAL))
+           .ForMember(x => x.EFS_INFORMATIVO_ADMIN, map => map.MapFrom(dto => dto.EFS_INFORMATIVO_ADMIN))
+           .ForMember(x => x.EFS_CARACTERIZACION, map => map.MapFrom(dto => dto.EFS_CARACTERIZACION))
+           .ForMember(x => x.EFS_CONCEPTO_PSICOSOCIAL, map => map.MapFrom(dto => dto.EFS_CONCEPTO_PSICOSOCIAL))
+           .ForMember(x => x.EFS_ESTADO, map => map.MapFrom(dto => dto.EFS_ESTADO))
+           .ForMember(x => x.EFS_ACTIVIDAD, map => map.MapFrom(dto => dto.EFS_ACTIVIDAD))
+           .ForMember(x => x.NombreEstado, map => map.MapFrom(dto => dto.NombreEstado))
+           .ForMember(x => x.NombreActividad, map => map.MapFrom(dto => dto.NombreActividad))
+           .ForMember(x => x.EFS_OBSERVACION, map => map.MapFrom(dto => dto.EFS_OBSERVACION))
+           .ReverseMap();
+
+            CreateMap<Clasificacion, ClasficacionDto>()
+           .ForMember(x => x.CalificacionId, map => map.MapFrom(dto => dto.CalificacionId))
+           .ForMember(x => x.SolicitudId, map => map.MapFrom(dto => dto.SolicitudId))
+           .ForMember(x => x.TipoImputabilidad, map => map.MapFrom(dto => dto.TipoImputabilidad))
+           .ForMember(x => x.ImputabilidadAlServicio, map => map.MapFrom(dto => dto.ImputabilidadAlServicio))
+           .ForMember(x => x.PorcentajePostulacion, map => map.MapFrom(dto => dto.PorcentajePostulacion))
+           .ForMember(x => x.Hecho, map => map.MapFrom(dto => dto.Hecho))
+           .ForMember(x => x.Puntaje, map => map.MapFrom(dto => dto.Puntaje))
+           .ForMember(x => x.DisfrutePension, map => map.MapFrom(dto => dto.DisfrutePension))
+           .ForMember(x => x.DatosResolucion, map => map.MapFrom(dto => dto.DatosResolucion))
+           .ForMember(x => x.EstadoId, map => map.MapFrom(dto => dto.EstadoId))
+           .ForMember(x => x.Actividad, map => map.MapFrom(dto => dto.Actividad))
+           .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.Observacion))
+           .ForMember(x => x.HechoDescripcion, map => map.MapFrom(dto => dto.HechoDescripcion))
+           .ForMember(x => x.PorcentajeDisminucion, map => map.MapFrom(dto => dto.PorcentajeDisminucion))
+           .ForMember(x => x.UserId, map => map.MapFrom(dto => dto.UserId))
+           .ForMember(x => x.ImputabilidadServicioDescripcion, map => map.MapFrom(dto => dto.ImputabilidadServicioDescripcion))
+           .ForMember(x => x.Descripcion, map => map.MapFrom(dto => dto.Descripcion))
+           .ReverseMap();
+
+            CreateMap<CalificacionResponse, CalificacionResponseDto>()
+           .ForMember(x => x.CalificacionId, map => map.MapFrom(dto => dto.CalificacionId))
+           .ForMember(x => x.SolicitudId, map => map.MapFrom(dto => dto.SolicitudId))
+           .ForMember(x => x.UnidadEjecutora, map => map.MapFrom(dto => dto.UnidadEjecutora))
+           .ForMember(x => x.TipoImputabilidad, map => map.MapFrom(dto => dto.TipoImputabilidad))
+           .ForMember(x => x.TipoImputabilidad, map => map.MapFrom(dto => dto.TipoImputabilidad))
+           .ForMember(x => x.PorcentajePostulacion, map => map.MapFrom(dto => dto.PorcentajePostulacion))
+           .ForMember(x => x.Hecho, map => map.MapFrom(dto => dto.Hecho))
+           .ForMember(x => x.Puntaje, map => map.MapFrom(dto => dto.Puntaje))
+           .ForMember(x => x.DisfrutePension, map => map.MapFrom(dto => dto.DisfrutePension))
+           .ForMember(x => x.DatosResolucion, map => map.MapFrom(dto => dto.DatosResolucion))
+           .ForMember(x => x.EstadoId, map => map.MapFrom(dto => dto.EstadoId))
+           .ForMember(x => x.Actividad, map => map.MapFrom(dto => dto.Actividad))
+           .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.Observacion))
+           .ForMember(x => x.NombreEstado, map => map.MapFrom(dto => dto.NombreEstado))
+           .ForMember(x => x.NombreActividad, map => map.MapFrom(dto => dto.NombreActividad))
+           .ForMember(x => x.HechoDescripcion, map => map.MapFrom(dto => dto.HechoDescripcion))
+           .ForMember(x => x.PorcentajeDisminucion, map => map.MapFrom(dto => dto.PorcentajeDisminucion))
+           .ForMember(x => x.ImputabilidadServicioDescripcion, map => map.MapFrom(dto => dto.ImputabilidadServicioDescripcion))
+           .ForMember(x => x.Descripcion, map => map.MapFrom(dto => dto.Descripcion))
+           .ReverseMap();
+
+
+            CreateMap<SolicitudPostulacionRequest, SolicitudPostulacionRequestDto>()
+         .ForMember(x => x.Identificacion, map => map.MapFrom(dto => dto.Identificacion))
+         .ForMember(x => x.TipoSolicitudId, map => map.MapFrom(dto => dto.TipoSolicitudId))
+         .ForMember(x => x.EtapasId, map => map.MapFrom(dto => dto.EtapasId))
+         .ForMember(x => x.NoConvocatoria, map => map.MapFrom(dto => dto.NoConvocatoria))
+         .ReverseMap();
+
+            CreateMap<ActividadFondoSolidaridad, EtapaPostulacionDto>()
+         .ForMember(x => x.Id, map => map.MapFrom(dto => dto.ID))
+         .ForMember(x => x.Nombre, map => map.MapFrom(dto => dto.NOMBRE))
+         .ForMember(x => x.Estado, map => map.MapFrom(dto => dto.ESTADO))
+         .ReverseMap();
+
+            CreateMap<VerificatePostulacionDto, VerificatePostulacionResponse>()
+            .ForMember(x => x.IdVerificacion, map => map.MapFrom(dto => dto.IdVerificacion))
+            .ForMember(x => x.IdSolicitud, map => map.MapFrom(dto => dto.IdSolicitud))
+            .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.Observacion))
+            .ForMember(x => x.FechaCreacion, map => map.MapFrom(dto => dto.FechaCreacion))
+            .ForMember(x => x.EtapaId, map => map.MapFrom(dto => dto.EtapaId))
+            .ForMember(x => x.StatusId, map => map.MapFrom(dto => dto.StatusId))
+            .ForMember(x => x.Estado, map => map.MapFrom(dto => dto.Estado))
+            .ForMember(x => x.NombreEtapa, map => map.MapFrom(dto => dto.NombreEtapa))
+            .ReverseMap();
+
+
+            CreateMap<ObservacionArchivoDto, ObservacionArchivo>()
+            .ForMember(x => x.Observacion, map => map.MapFrom(dto => dto.Observacion))
+            .ForMember(x => x.NumeroFolio, map => map.MapFrom(dto => dto.NumeroFolio))
+            .ReverseMap();
+
+
+            CreateMap<StagePostulationDto, StagePostulation>()
+             .ForMember(x => x.Status, map => map.MapFrom(dto => dto.Status))
+            .ForMember(x => x.Observation, map => map.MapFrom(dto => dto.Observation))
+            .ForMember(x => x.UserName, map => map.MapFrom(dto => dto.UserName))
+            .ForMember(x => x.Activity, map => map.MapFrom(dto => dto.Activity)).ReverseMap();
+
+            CreateMap<EstadoSolicitudFondo, EstadoSolicitudFondoDto>().ReverseMap();
+
+            CreateMap<InconsistenciaFondoSolidaridad, InconsistenciaFondoSolidaridadDTO>().ReverseMap();
+        }
+
+    }
+
+   
+}

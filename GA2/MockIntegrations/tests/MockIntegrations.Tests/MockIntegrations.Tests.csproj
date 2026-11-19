@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
+    <!-- El código enlazado de GA2 (proxies WCF y DTO) se compila tal cual: sus advertencias no aplican aquí. -->
+    <NoWarn>$(NoWarn);CS8618;CS8632;CS8600;CS8601;CS8602;CS8603;CS8604;CS8625;CS0618;CS0108;CS8981;CS1998;SYSLIB0014;SYSLIB0051</NoWarn>
+    <!-- Las llamadas van a un servidor local efímero: el token de cancelación de xUnit no aporta. -->
+    <NoWarn>$(NoWarn);xUnit1051</NoWarn>
+    <!-- Ruta del código de GA2 (raíz del repositorio /src). -->
+    <Ga2Src>$(MSBuildThisFileDirectory)..\..\..\src\</Ga2Src>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.10" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit.v3" Version="3.2.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="System.Net.Http.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MockIntegrations.Api\MockIntegrations.Api.csproj" />
+  </ItemGroup>
+
+  <!--
+    Código real de GA2 enlazado (no copiado): si GA2 cambia un contrato, estas pruebas lo detectan.
+    Proxies WCF (Reference.cs) de todas las integraciones SOAP del alcance.
+  -->
+  <ItemGroup Label="GA2 SOAP proxies">
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Seven\*\Reference.cs" Link="Ga2\Proxies\Seven\%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\WorkManager\Reference.cs" Link="Ga2\Proxies\WorkManager\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Bua\Reference.cs" Link="Ga2\Proxies\BuaWs01\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Fenix\Reference.cs" Link="Ga2\Proxies\Fenix\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Haberes\Reference.cs" Link="Ga2\Proxies\Haberes\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\Connected Services\ServiceSeven\Reference.cs" Link="Ga2\Proxies\ServiceSeven\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\Connected Services\ServiceReference1\Reference.cs" Link="Ga2\Proxies\BuaWs02\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\Connected Services\ServiceVigiaVerificacionTercero\Reference.cs" Link="Ga2\Proxies\Vigia\Reference.cs" />
+    <Compile Include="$(Ga2Src)GA2.Application\Main\TransUnionService\Reference.cs" Link="Ga2\Proxies\TransUnion\Reference.cs" />
+  </ItemGroup>
+
+  <ItemGroup Label="GA2 DTO y deserializadores">
+    <Compile Include="$(Ga2Src)GA2.Application\Dto\Credito\TU\Requests\*.cs" Link="Ga2\Dto\TU\Requests\%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.Application\Dto\Credito\TU\Responses\*.cs" Link="Ga2\Dto\TU\Responses\%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.Application\Main\TransUnion\Serialization.cs" Link="Ga2\Dto\TU\Serialization.cs" />
+    <!-- Cliente real de TransUnion: la URL es fija en el código, la prueba reemplaza endpointAddress por reflexión. -->
+    <Compile Include="$(Ga2Src)GA2.Application\Main\TransUnion\ValidacionesTU.cs" Link="Ga2\TU\ValidacionesTU.cs" />
+    <Compile Include="$(Ga2Src)GA2.Application\Main\TransUnion\TextEncoder.cs" Link="Ga2\TU\TextEncoder.cs" />
+    <Compile Include="$(Ga2Src)GA2.Transversals\Commons\Configuraciones\ConfiguracionesServiciosSoa.cs" Link="Ga2\Dto\Commons\ConfiguracionesServiciosSoa.cs" />
+    <Compile Include="$(Ga2Src)GA2.Application\Dto\Fenix\Diffgram.cs" Link="Ga2\Dto\Fenix\Diffgram.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Dodo\Common\*.cs" Exclude="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Dodo\Common\DodoCommonIntegrationService.cs" Link="Ga2\Dto\Dodo\Common\%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\Dodo\*\Models\*.cs" Link="Ga2\Dto\Dodo\%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\ReferenciasSvc\TusDatos\Models\*.cs" Link="Ga2\Dto\TusDatos\%(Filename)%(Extension)" />
+    <Compile Include="$(Ga2Src)GA2.BuildingBlocks\EventBus\Events\IntegrationEvent.cs" Link="Ga2\Events\IntegrationEvent.cs" />
+    <Compile Include="$(Ga2Src)GA2.Domain\Core\IntegrationEvents\Events\WorkManager\WorkManagerIntegrationEvent.cs" Link="Ga2\Events\WorkManagerIntegrationEvent.cs" />
+    <Compile Include="$(Ga2Src)GA2.Transversals\Commons\Response\Response.cs" Link="Ga2\Dto\Commons\Response.cs" />
+    <Compile Include="$(Ga2Src)GA2.Transversals\Commons\Response\BaseMessage.cs" Link="Ga2\Dto\Commons\BaseMessage.cs" />
+  </ItemGroup>
+
+</Project>

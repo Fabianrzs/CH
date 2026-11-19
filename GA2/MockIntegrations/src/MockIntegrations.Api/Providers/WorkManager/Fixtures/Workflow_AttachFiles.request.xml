@@ -1,0 +1,24 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Workflow_AttachFiles xmlns="http://tempuri.org/">
+      <request xmlns:a="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:Files>
+          <a:FileDto>
+            <a:Base64String>Base64String</a:Base64String>
+            <a:Description>Description</a:Description>
+            <a:DirectoryCode>DirectoryCode</a:DirectoryCode>
+            <a:DocumentTypeCode>DocumentTypeCode</a:DocumentTypeCode>
+            <a:Ext>Ext</a:Ext>
+            <a:GUID>GUID</a:GUID>
+          </a:FileDto>
+        </a:Files>
+        <a:Header>
+          <a:Token>Token</a:Token>
+          <a:User>User</a:User>
+        </a:Header>
+        <a:OperationUser>OperationUser</a:OperationUser>
+        <a:WorkflowId>1</a:WorkflowId>
+      </request>
+    </Workflow_AttachFiles>
+  </s:Body>
+</s:Envelope>

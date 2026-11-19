@@ -1,0 +1,9 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetCuentaContable xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <emp_codi>1</emp_codi>
+      <pro_codi>pro_codi</pro_codi>
+      <dsp_codi>dsp_codi</dsp_codi>
+    </GetCuentaContable>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,1028 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MockIntegrations.Api</name>
+    </assembly>
+    <members>
+        <member name="T:MockIntegrations.Api.Configuration.MockOptions">
+            <summary>
+            Configuración raíz del mock (sección <c>MockIntegrations</c> de appsettings o variables
+            de entorno <c>MockIntegrations__*</c>).
+            </summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.MockOptions.FixturesOverridePath">
+            <summary>
+            Carpeta opcional con fixtures que reemplazan a los embebidos, con la misma estructura
+            <c>{Proveedor}/Fixtures/{Operación}.{escenario}.{xml|json}</c>. Se leen en cada petición.
+            </summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.MockOptions.SlowScenarioDelayMs">
+            <summary>Retardo (ms) que aplica el escenario integrado <c>slow</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.MockOptions.LatencyMs">
+            <summary>Latencia fija por proveedor (ms), aplicada a todas sus operaciones.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Configuration.ScenarioOptions">
+            <summary>Selección determinista de escenarios.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ScenarioOptions.Defaults">
+            <summary>
+            Escenario por defecto por proveedor y operación: <c>Defaults:Seven:CrearCDP = "error-negocio"</c>.
+            La operación <c>*</c> aplica a todas las del proveedor.
+            </summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ScenarioOptions.Rules">
+            <summary>Reglas por dato de entrada (p. ej. número de documento). Gana la primera que coincide.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Configuration.ScenarioRule">
+            <summary>
+            Regla que elige un escenario según un valor del request. El campo se busca por nombre local
+            en el XML SOAP, por nombre de propiedad en el JSON (sin distinguir mayúsculas), en los
+            parámetros de ruta o en la query string.
+            </summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ScenarioRule.Operation">
+            <summary>Operación a la que aplica; vacío o <c>*</c> = todas las del proveedor.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ScenarioRule.EqualsValue">
+            <summary>Valor exacto (sin distinguir mayúsculas). Excluyente con <see cref="P:MockIntegrations.Api.Configuration.ScenarioRule.StartsWith"/>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.SmtpOptions.Port">
+            <summary>Puerto del servidor SMTP de captura (GA2: <c>SMTP:Puerto</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.SmtpOptions.RejectRecipients">
+            <summary>Destinatarios rechazados con 550 (simula el escenario "destinatario rechazado").</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ServiceBusOptions.ConnectionString">
+            <summary>
+            Cadena de conexión del emulador de Azure Service Bus (o de un namespace de pruebas).
+            Sólo se usa para publicar los eventos que consume GA2. Vacía = publicación deshabilitada.
+            </summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.ServiceBusOptions.Topic">
+            <summary>Topic fijo en GA2 (<c>EventBusServiceBus.cs</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TusDatosOptions.ApiKey">
+            <summary>Si tiene valor, el header <c>x-api-key</c> debe coincidir; si no, basta con que exista.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TusDatosOptions.PollsUntilFinished">
+            <summary>Número de sondeos que devuelven el estado pendiente antes de finalizar el job.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TusDatosOptions.PendingStatus">
+            <summary>Valor de <c>statusJobTusDatos</c> mientras el job está en curso (dominio no confirmado).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TusDatosOptions.FinishedStatus">
+            <summary>Valor de <c>statusJobTusDatos</c> cuando el job termina (dominio no confirmado).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.KtrionApiOptions.RequireIssuedToken">
+            <summary>Exige <c>Authorization: Bearer</c> con un token emitido por <c>api/autenticacion</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TransUnionOptions.ValidPin">
+            <summary>PIN OTP que el mock acepta (código 300); cualquier otro devuelve 302.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Configuration.TransUnionOptions.FirstApplicationId">
+            <summary>Primer ApplicationId que asigna el mock (se incrementa por transacción).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Admin.AdminEndpoints">
+            <summary>API de administración del mock (<c>/_mock</c>): catálogo, escenarios, registro de llamadas y reinicio.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Catalog.Ga2Usage">
+            <summary>Cómo usa GA2 la operación (según el análisis del código, ver docs/).</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.Ga2Usage.Business">
+            <summary>La invoca la lógica de negocio de GA2.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.Ga2Usage.PassThrough">
+            <summary>Sólo la expone un endpoint de GA2 que reenvía la llamada tal cual.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.Ga2Usage.NotUsed">
+            <summary>Está en el contrato/cliente pero ningún flujo de GA2 la invoca.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Catalog.MockOperation">
+            <summary>Una operación simulada. Es la fuente única para el catálogo, OpenAPI y las pruebas.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Method">
+            <summary>Verbo HTTP (REST/SOAP) o canal (SMTP/Service Bus).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Route">
+            <summary>Ruta servida por el mock.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.SoapAction">
+            <summary>SOAPAction (sólo SOAP).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Scenarios">
+            <summary>Escenarios soportados (además de los integrados).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Ga2ConfigKey">
+            <summary>Clave de configuración de GA2 que apunta a esta operación.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Ga2Source">
+            <summary>Código de GA2 que construye el request o lee el response.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Catalog.MockOperation.Certainty">
+            <summary>Grado de certeza del contrato.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.ContractCertainty.Validated">
+            <summary>Estructura validada por ida y vuelta con el proxy/DTO real de GA2.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.ContractCertainty.StructureOnly">
+            <summary>Estructura validada, pero el contenido de negocio (códigos, dominios) no está confirmado con el proveedor.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Catalog.ContractCertainty.NotImplemented">
+            <summary>GA2 no la usa; el mock sólo responde un error explícito.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Catalog.MockCatalog">
+            <summary>Registro en memoria de todas las operaciones simuladas.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Fixtures.FixtureStore">
+            <summary>
+            Respuestas grabadas por proveedor: <c>Providers/{Proveedor}/Fixtures/{Operación}.{escenario}.{ext}</c>.
+            Los archivos van embebidos en el ensamblado y se pueden reemplazar sin recompilar con
+            <c>MockIntegrations:FixturesOverridePath</c>. El contenido se devuelve byte a byte
+            (importante: Haberes exige el DataSet sin indentar).
+            </summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Fixtures.FixtureStore.DocumentationOnly">
+            <summary>Sufijos de fixtures que sólo documentan (ejemplos de OpenAPI), no escenarios servidos.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.FixtureStore.Get(System.String,System.String)">
+            <summary>Busca <c>{provider}/Fixtures/{fileName}</c>; primero en la carpeta de override.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.FixtureStore.ScenariosFor(System.String,System.String)">
+            <summary>Escenarios con fixture para una operación (<c>{op}.{escenario}.{ext}</c>), sin los ejemplos de documentación.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Fixtures.TemplatePreview">
+            <summary>
+            Resuelve los marcadores de un fixture con valores ilustrativos y sin efectos secundarios
+            (no avanza contadores). Se usa para los ejemplos de OpenAPI.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.TemplatePreview.TokenRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>\\{\\{(?&lt;kind&gt;req|seq|now|guid)(?::(?&lt;arg&gt;[^}]*))?\\}\\}</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "{{".<br/>
+            ○ "kind" capture group.<br/>
+                ○ Match with 4 alternative expressions.<br/>
+                    ○ Match the string "req".<br/>
+                    ○ Match the string "seq".<br/>
+                    ○ Match the string "now".<br/>
+                    ○ Match the string "guid".<br/>
+            ○ Optional (greedy).<br/>
+                ○ Match ':'.<br/>
+                ○ "arg" capture group.<br/>
+                    ○ Match a character other than '}' atomically any number of times.<br/>
+            ○ Match the string "}}".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Fixtures.SequenceStore">
+            <summary>Contadores deterministas (radicados, consecutivos contables, ApplicationId...).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.SequenceStore.Next(System.String,System.Int64)">
+            <summary>Devuelve <paramref name="start"/> la primera vez y luego incrementa de uno en uno.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Fixtures.TemplateEscaping.Xml">
+            <summary>Los valores insertados se escapan para XML.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Fixtures.TemplateEscaping.Json">
+            <summary>Los valores insertados se escapan como contenido de cadena JSON.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Fixtures.TemplateRenderer">
+            <summary>
+            Sustituye marcadores en los fixtures:
+            <list type="bullet">
+            <item><c>{{req:Campo}}</c> / <c>{{req:Campo|valor por defecto}}</c>: valor del request (nombre local XML, propiedad JSON, ruta o query).</item>
+            <item><c>{{seq:nombre}}</c>, <c>{{seq:nombre:inicio}}</c>, <c>{{seq:nombre:inicio:formato}}</c>: contador (p. ej. <c>{{seq:wm.barcode:123:D6}}</c> → <c>000123</c>).</item>
+            <item><c>{{now:formato}}</c>: fecha/hora local en formato .NET (por defecto <c>s</c>).</item>
+            <item><c>{{guid}}</c>: GUID nuevo.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.TemplateRenderer.#ctor(MockIntegrations.Api.Infrastructure.Fixtures.SequenceStore)">
+            <summary>
+            Sustituye marcadores en los fixtures:
+            <list type="bullet">
+            <item><c>{{req:Campo}}</c> / <c>{{req:Campo|valor por defecto}}</c>: valor del request (nombre local XML, propiedad JSON, ruta o query).</item>
+            <item><c>{{seq:nombre}}</c>, <c>{{seq:nombre:inicio}}</c>, <c>{{seq:nombre:inicio:formato}}</c>: contador (p. ej. <c>{{seq:wm.barcode:123:D6}}</c> → <c>000123</c>).</item>
+            <item><c>{{now:formato}}</c>: fecha/hora local en formato .NET (por defecto <c>s</c>).</item>
+            <item><c>{{guid}}</c>: GUID nuevo.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Fixtures.TemplateRenderer.TokenRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>\\{\\{(?&lt;kind&gt;req|seq|now|guid)(?::(?&lt;arg&gt;[^}]*))?\\}\\}</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "{{".<br/>
+            ○ "kind" capture group.<br/>
+                ○ Match with 4 alternative expressions.<br/>
+                    ○ Match the string "req".<br/>
+                    ○ Match the string "seq".<br/>
+                    ○ Match the string "now".<br/>
+                    ○ Match the string "guid".<br/>
+            ○ Optional (greedy).<br/>
+                ○ Match ':'.<br/>
+                ○ "arg" capture group.<br/>
+                    ○ Match a character other than '}' atomically any number of times.<br/>
+            ○ Match the string "}}".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Journal.MockCallInfo">
+            <summary>Proveedor, operación y escenario de la llamada en curso (los fija cada mock).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Journal.JournalEntry">
+            <summary>Una llamada recibida por el mock (para aserciones en pruebas de integración).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Journal.JournalEntry.Headers">
+            <summary>Headers recibidos; <c>Authorization</c> y <c>x-api-key</c> se enmascaran.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Journal.RequestJournal">
+            <summary>Registro circular en memoria de las llamadas recibidas.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Journal.RequestJournal.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions})">
+            <summary>Registro circular en memoria de las llamadas recibidas.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Journal.RequestJournalMiddleware">
+            <summary>Guarda cada llamada a los mocks (no registra Swagger, OpenAPI ni la administración).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Journal.RequestJournalMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,MockIntegrations.Api.Infrastructure.Journal.RequestJournal,Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions})">
+            <summary>Guarda cada llamada a los mocks (no registra Swagger, OpenAPI ni la administración).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.OpenApi.OpenApiSetup">
+            <summary>Un documento OpenAPI por proveedor (<c>/openapi/{proveedor}.json</c>) y uno con todo (<c>/openapi/all.json</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.OpenApi.SoapOperationTransformer">
+            <summary>
+            Documenta un endpoint SOAP. OpenAPI no puede distinguir operaciones que comparten ruta y verbo
+            y sólo se diferencian por <c>SOAPAction</c>, así que el endpoint se describe una vez, con la
+            lista de acciones (enum del header), un ejemplo de request y de response por operación y el
+            SOAP Fault. Se documenta como lo que es: SOAP 1.1 sobre HTTP, no REST.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.OpenApi.SoapOperationTransformer.#ctor(MockIntegrations.Api.Infrastructure.Soap.SoapService,System.String)">
+            <summary>
+            Documenta un endpoint SOAP. OpenAPI no puede distinguir operaciones que comparten ruta y verbo
+            y sólo se diferencian por <c>SOAPAction</c>, así que el endpoint se describe una vez, con la
+            lista de acciones (enum del header), un ejemplo de request y de response por operación y el
+            SOAP Fault. Se documenta como lo que es: SOAP 1.1 sobre HTTP, no REST.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Rest.RestOperationSpec">
+            <summary>Metadatos de una operación REST simulada.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Rest.RestMock.MapMock(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.String,MockIntegrations.Api.Infrastructure.Rest.RestOperationSpec,System.Delegate)">
+            <summary>
+            Registra un endpoint REST simulado: catálogo, nombre, etiqueta y documento OpenAPI del proveedor,
+            descripción con los escenarios y el header opcional <c>X-Mock-Scenario</c>.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Rest.RestMock.BeginAsync(Microsoft.AspNetCore.Http.HttpContext,MockIntegrations.Api.Infrastructure.Rest.RestOperationSpec,System.Func{System.String,System.String})">
+            <summary>Resuelve el escenario, lo registra en la llamada y aplica la latencia configurada.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Rest.RestMock.BuiltIn(MockIntegrations.Api.Infrastructure.Scenarios.ScenarioDecision,MockIntegrations.Api.Infrastructure.Rest.RestOperationSpec)">
+            <summary>Respuesta de los escenarios integrados de error técnico, o <c>null</c> si no aplica.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Rest.RestMock.Lookup(Microsoft.AspNetCore.Http.HttpContext,System.Object)">
+            <summary>Busca un valor por nombre en la ruta, la query y (sin distinguir mayúsculas, en cualquier nivel) en el body.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Scenarios.MockDelays">
+            <summary>Latencia configurada por proveedor y escenario <c>slow</c>.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Scenarios.MockDelays.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions})">
+            <summary>Latencia configurada por proveedor y escenario <c>slow</c>.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Scenarios.BuiltInScenarios">
+            <summary>Escenarios integrados, disponibles en todas las operaciones.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Scenarios.BuiltInScenarios.Default">
+            <summary>Respuesta de éxito (fixture <c>{Operación}.default</c>).</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Scenarios.BuiltInScenarios.Fault">
+            <summary>SOAP: HTTP 500 con <c>s:Fault</c>. REST: HTTP 500 con cuerpo de texto.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Scenarios.BuiltInScenarios.Http500">
+            <summary>HTTP 500 con cuerpo HTML (no SOAP): provoca <c>ProtocolException</c>/<c>CommunicationException</c> en WCF.</summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Infrastructure.Scenarios.BuiltInScenarios.Slow">
+            <summary>Respuesta normal tras <c>MockIntegrations:SlowScenarioDelayMs</c>.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Scenarios.ScenarioSource">
+            <summary>Origen de la decisión de escenario (se devuelve en el header <c>X-Mock-Scenario-Source</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Scenarios.ScenarioOverrideStore">
+            <summary>Escenarios fijados en caliente con la API de administración (<c>/_mock/scenarios</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Scenarios.ScenarioResolver">
+            <summary>
+            Decide el escenario de una llamada de forma determinista. Prioridad:
+            1) header <c>X-Mock-Scenario</c> (pruebas manuales; GA2 nunca lo envía),
+            2) override en caliente (<c>PUT /_mock/scenarios/...</c>),
+            3) reglas por dato de entrada (<c>MockIntegrations:Scenarios:Rules</c>),
+            4) escenario por defecto configurado (<c>MockIntegrations:Scenarios:Defaults</c>),
+            5) <c>default</c>.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Scenarios.ScenarioResolver.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions},MockIntegrations.Api.Infrastructure.Scenarios.ScenarioOverrideStore)">
+            <summary>
+            Decide el escenario de una llamada de forma determinista. Prioridad:
+            1) header <c>X-Mock-Scenario</c> (pruebas manuales; GA2 nunca lo envía),
+            2) override en caliente (<c>PUT /_mock/scenarios/...</c>),
+            3) reglas por dato de entrada (<c>MockIntegrations:Scenarios:Rules</c>),
+            4) escenario por defecto configurado (<c>MockIntegrations:Scenarios:Defaults</c>),
+            5) <c>default</c>.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapEndpoints.MapSoapService(Microsoft.AspNetCore.Builder.WebApplication,MockIntegrations.Api.Infrastructure.Soap.SoapService)">
+            <summary>
+            Publica un servicio SOAP: <c>POST {ruta}</c> despacha por <c>SOAPAction</c> y <c>GET {ruta}</c>
+            devuelve una página de ayuda (no forma parte del contrato). Registra las operaciones en el catálogo.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Soap.SoapService">
+            <summary>Un servicio SOAP (un .asmx/.svc) con sus operaciones, despachadas por <c>SOAPAction</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapService.Id">
+            <summary>Identificador estable (operationId en OpenAPI).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapService.Contract">
+            <summary>Nombre del contrato WSDL/WCF (p. ej. <c>SCNMCONTSoap</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapService.Paths">
+            <summary>Rutas servidas (la original del proveedor; GA2 sólo cambia host y puerto).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapService.Ga2ConfigKey">
+            <summary>Clave de GA2 que contiene la URL (<c>SvcUtils:*</c>), o el motivo por el que no es configurable.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapOperation.Scenarios">
+            <summary>Escenarios de negocio documentados (los fixtures adicionales se descubren solos).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapOperation.Handler">
+            <summary>Lógica propia; si es nula se sirve el fixture <c>{Name}.{escenario}.xml</c>.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Soap.SoapContext">
+            <summary>Datos de la llamada SOAP en curso.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Infrastructure.Soap.SoapContext.Body">
+            <summary>Primer hijo de <c>Body</c> (el elemento de la operación).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapContext.Value(System.String)">
+            <summary>Valor del primer descendiente del cuerpo con ese nombre local (sin distinguir mayúsculas).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapContext.Fixture(System.String)">
+            <summary>Sirve el fixture <c>{Operación}.{escenario}.xml</c> con los marcadores resueltos.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Infrastructure.Soap.SoapReply">
+            <summary>Respuesta HTTP de un servicio SOAP.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapReply.#ctor(System.Int32,System.String,System.String)">
+            <summary>Respuesta HTTP de un servicio SOAP.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapReply.Fault(System.String,System.String)">
+            <summary>SOAP 1.1 Fault, como lo genera WCF/ASMX (HTTP 500).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Infrastructure.Soap.SoapEnvelope.ReadAction(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>Extrae la acción del header <c>SOAPAction</c> (SOAP 1.1) o del parámetro <c>action</c> del Content-Type (SOAP 1.2).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Bua.BuaMock">
+            <summary>
+            E3 — BUA SOAP (Base Única de Afiliados), contrato WCF <c>IBUA_API.ObtenerBUA</c>.
+            GA2 tiene dos proxies (ws.01 y ws.02) con pequeñas diferencias de tipos; un único fixture sirve
+            a ambos (enteros en <c>valor</c> y <c>tasaAporte</c>). Contrato: docs/providers/E03-bua.md.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Dodo.DodoMock">
+            <summary>
+            E9 — Dodo REST (nueva API del gestor documental, <c>dodo-docs-test:10081</c>). Los modelos son copia
+            de los DTO de GA2 (<c>ReferenciasSvc/Dodo/**/Models</c>). En GA2 sólo la usa <c>DodoController</c>
+            (pass-through en <c>api/integrations/dodo/*</c>). Contrato: docs/providers/E09-dodo-rest.md.
+            Rutas servidas bajo <c>/dodo/</c>: en GA2, <c>Integrationes:Dodo:BaseUrl = http://&lt;mock&gt;/dodo/</c>.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Dodo.DodoMock.Post``2(Microsoft.AspNetCore.Builder.WebApplication,System.String,System.String,System.String,System.String,System.Func{``0,MockIntegrations.Api.Infrastructure.Fixtures.SequenceStore,``1})">
+            <summary>POST JSON → JSON, con los escenarios comunes de Dodo (default, fallido, no-encontrado).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Dodo.Models.DodoDataField">
+            <summary>
+            Par Field/Value para enviar o recibir datos de formularios.
+            Key es de solo lectura (respuesta del servidor).
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Dodo.Models.DodoFilterParameters">
+            <summary>
+            Filtro simple de búsqueda. Operadores válidos: =, &lt;&gt;, &gt;=, &lt;=, Like
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Fenix.FenixMock">
+            <summary>
+            E5 — Fénix, validación biométrica. ASMX que devuelve un DataSet .NET (xs:schema + diffgram);
+            GA2 lee <c>ValidarBiometriaResult.Nodes[1]</c> y lo deserializa como <c>diffgram</c>.
+            Contrato: docs/providers/E05-fenix.md.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Haberes.HaberesMock">
+            <summary>
+            E6 — Haberes, Modelo Canónico de Datos (<c>wsModeloCanonico.asmx</c>). Contrato: docs/providers/E06-haberes.md.
+            El DataSet de <c>ReporteHaberes</c> se sirve minificado: GA2 lee <c>Nodes[1].FirstNode</c> y falla si hay espacios.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.KtrionApiMock">
+            <summary>
+            E10 — Pasarela REST de Caja Honor "ktrionApi" (<c>CHKeys:UrlCajaHonor</c>). GA2 pide un token en
+            <c>api/autenticacion</c> antes de <b>cada</b> llamada y lo envía como <c>Authorization: Bearer</c>.
+            Rutas activas: <c>workflowattachfiles</c> (siempre) y <c>forminsert</c>/<c>formUpdate</c>/<c>generarreportehaberes</c>
+            (sólo con GA2 compilado en DEBUG). Contrato: docs/providers/E10-ktrionapi.md.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.KtrionApi.KtrionApiMock.Guard(Microsoft.AspNetCore.Http.HttpContext,MockIntegrations.Api.Infrastructure.Scenarios.ScenarioDecision,MockIntegrations.Api.Infrastructure.Rest.RestOperationSpec,MockIntegrations.Api.Providers.KtrionApi.KtrionApiTokens,Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions},System.String[])">
+            <summary>Escenarios técnicos, 401 y Bearer emitido por <c>api/autenticacion</c>; <c>null</c> si la llamada continúa.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.KtrionApi.KtrionApiMock.ReportRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>&lt;Report&gt;([^&lt;]*)&lt;/Report&gt;</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "&lt;Report&gt;".<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a character other than '&lt;' atomically any number of times.<br/>
+            ○ Match the string "&lt;/Report&gt;".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.KtrionApiTokens">
+            <summary>Tokens emitidos por <c>api/autenticacion</c> (en memoria).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.Models.GatewayResponse`1">
+            <summary><c>Response&lt;T&gt;</c> de GA2 (<c>GA2.Transversals/Commons/Response/Response.cs</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.Models.LoginIntegracionesRequest">
+            <summary><c>LoginIntegracionesDto</c>: credenciales de la aplicación (<c>AppMain:*</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.LoginIntegracionesRequest.Id">
+            <summary>CorrelationId de la petición (igual a <c>UserId</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.LoginIntegracionesRequest.NombreAplicacion">
+            <summary><c>AppMain:ApplicationName</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.LoginIntegracionesRequest.Contrasena">
+            <summary><c>AppMain:Password</c>. El mock no lo valida.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.LoginIntegracionesRequest.AplicacionId">
+            <summary><c>AppMain:ApplicationId</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.TokenData.Token">
+            <summary>Token que GA2 envía después como <c>Authorization: Bearer</c>.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.InsertRequestDto.FormCode">
+            <summary>Código del formulario (p. ej. <c>83</c>); prefijo del radicado devuelto.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.Models.FormInsertGatewayRequest">
+            <summary>Proxy WCF <c>Form_InsertRequest</c> serializado (campo público <c>request</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.Models.InsertResponseDto">
+            <summary><c>InsertResponseDto</c> de WorkManager (orden y nombres de los DataMember).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.KtrionApi.Models.InsertResponseDto.BarCode">
+            <summary>Número de radicado <c>{FormCode}-{consecutivo}</c>; vacío → GA2 guarda "RADICADO NO DISPONIBLE".</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.KtrionApi.Models.HaberesGatewayRequest">
+            <summary><c>HaberesRequestDto</c> de GA2.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.ProviderInfo">
+            <summary>Un proveedor simulado: su documento OpenAPI (<c>/openapi/{Id}.json</c>) y su registro de endpoints.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.ProviderInfo.#ctor(System.String,System.String,System.String,System.String,System.Action{Microsoft.AspNetCore.Builder.WebApplication})">
+            <summary>Un proveedor simulado: su documento OpenAPI (<c>/openapi/{Id}.json</c>) y su registro de endpoints.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.ProviderInfo.Id">
+            <summary>Nombre del documento OpenAPI y del grupo de endpoints.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.ServiceBus.ServiceBusMock">
+            <summary>
+            E12 — Azure Service Bus (topic <c>chonorintegraciones</c>, suscripción <c>dodosubscription</c>). GA2 sólo
+            consume: el broker lo provee el emulador oficial de Azure Service Bus (docker-compose del repositorio) y
+            este mock actúa como el productor externo, publicando los 5 eventos que GA2 escucha.
+            AMQP no se representa en OpenAPI: el endpoint HTTP de publicación es una herramienta de prueba.
+            Contrato: docs/providers/E12-servicebus.md.
+            </summary>
+        </member>
+        <member name="F:MockIntegrations.Api.Providers.ServiceBus.ServiceBusMock.Events">
+            <summary>Subject (nombre del evento sin el sufijo <c>IntegrationEvent</c>) → propiedad con el payload.</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.ServiceBus.ServiceBusMock.Sample(System.String)">
+            <summary>Ejemplo de E12 §3.3: formato que corresponde a la intención del código (DataMember dentro de 'request').</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Seven.SevenMock">
+            <summary>
+            E1 — Seven ERP (Digital Ware): 7 servicios ASMX, namespace <c>http://seven/</c>.
+            Contrato: docs/providers/E01-seven.md. Los <c>...Result</c> de negocio son un XML escapado con
+            <c>RETORNO</c> (0 = éxito, 1 = error) y <c>TXTERROR</c>; GA2 lee los consecutivos que devuelve.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Smtp.CapturedMessage">
+            <summary>Correo capturado por el servidor SMTP del mock.</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.Smtp.CapturedMessage.Subject">
+            <summary>Header <c>Subject</c> decodificado (RFC 2047).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.Smtp.CapturedMessage.Attachments">
+            <summary>Nombres de los adjuntos declarados en el MIME (p. ej. <c>Comunicación oficial de preaprobado.pdf</c>).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.Smtp.CapturedMessage.AuthenticatedUser">
+            <summary>Usuario de AUTH, si el cliente se autenticó (la contraseña no se guarda).</summary>
+        </member>
+        <member name="P:MockIntegrations.Api.Providers.Smtp.CapturedMessage.Raw">
+            <summary>Mensaje completo (RFC 5322) tal como llegó en <c>DATA</c>.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer">
+            <summary>
+            Servidor SMTP mínimo de captura (sin TLS): acepta EHLO/HELO, AUTH LOGIN/PLAIN (cualquier credencial),
+            MAIL, RCPT, DATA, RSET, NOOP y QUIT, que es lo que usa <c>System.Net.Mail.SmtpClient</c> en GA2
+            (<c>EmailNotificacionRepository</c>: <c>SMTP:HabilitarSsl=false</c>, puerto <c>SMTP:Puerto</c>).
+            Los destinatarios de <c>MockIntegrations:Smtp:RejectRecipients</c> se rechazan con 550.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{MockIntegrations.Api.Configuration.MockOptions},MockIntegrations.Api.Providers.Smtp.SmtpMailbox,Microsoft.Extensions.Logging.ILogger{MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer})">
+            <summary>
+            Servidor SMTP mínimo de captura (sin TLS): acepta EHLO/HELO, AUTH LOGIN/PLAIN (cualquier credencial),
+            MAIL, RCPT, DATA, RSET, NOOP y QUIT, que es lo que usa <c>System.Net.Mail.SmtpClient</c> en GA2
+            (<c>EmailNotificacionRepository</c>: <c>SMTP:HabilitarSsl=false</c>, puerto <c>SMTP:Puerto</c>).
+            Los destinatarios de <c>MockIntegrations:Smtp:RejectRecipients</c> se rechazan con 550.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.Attachments(System.String)">
+            <summary>
+            Nombre de cada parte MIME con <c>Content-Disposition: attachment</c>: el <c>filename</c> de la disposición o,
+            si no está (es lo que hace System.Net.Mail), el <c>name</c> del <c>Content-Type</c>.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.DispositionRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>^Content-Disposition:\\s*attachment</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Multiline</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at the beginning of a line.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match '-'.<br/>
+            ○ Match a character in the set [Dd].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Ss].<br/>
+            ○ Match a character in the set [Pp].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Ss].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match ':'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Tt] exactly 2 times.<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [Hh].<br/>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.FileNameRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>filename\\*?=(?&lt;name&gt;"[^"]*"|[^;\\r\\n]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Ff].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Ll].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match '*' atomically, optionally.<br/>
+            ○ Match '='.<br/>
+            ○ "name" capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '"'.<br/>
+                        ○ Match a character other than '"' atomically any number of times.<br/>
+                        ○ Match '"'.<br/>
+                    ○ Match a character in the set [^\n\r;] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.NameRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>\\bname=(?&lt;name&gt;"[^"]*"|[^;\\r\\n]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at a word boundary.<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match '='.<br/>
+            ○ "name" capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '"'.<br/>
+                        ○ Match a character other than '"' atomically any number of times.<br/>
+                        ○ Match '"'.<br/>
+                    ○ Match a character in the set [^\n\r;] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.EncodedWordRegex">
+            <remarks>
+            Pattern:<br/>
+            <code>=\\?(?&lt;charset&gt;[^?]+)\\?(?&lt;enc&gt;[BbQq])\\?(?&lt;text&gt;[^?]*)\\?=</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "=?".<br/>
+            ○ "charset" capture group.<br/>
+                ○ Match a character other than '?' atomically at least once.<br/>
+            ○ Match '?'.<br/>
+            ○ "enc" capture group.<br/>
+                ○ Match a character in the set [BQbq].<br/>
+            ○ Match '?'.<br/>
+            ○ "text" capture group.<br/>
+                ○ Match a character other than '?' atomically any number of times.<br/>
+            ○ Match the string "?=".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.DecodeParameter(System.String)">
+            <summary>
+            Valor de un parámetro MIME: RFC 2231 (<c>utf-8''Comunicaci%C3%B3n.pdf</c>, lo que usan Python y otros
+            clientes) o RFC 2047 (<c>=?utf-8?B?...?=</c>, lo que usa System.Net.Mail).
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer.DecodeWords(System.String)">
+            <summary>Decodifica encoded-words RFC 2047 (<c>=?utf-8?B?...?=</c>, <c>=?utf-8?Q?...?=</c>).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Smtp.SmtpMock">
+            <summary>
+            E11 — SMTP. El protocolo SMTP no es HTTP: GA2 habla con <see cref="T:MockIntegrations.Api.Providers.Smtp.SmtpCaptureServer"/> por TCP
+            (<c>SMTP:Host</c>/<c>SMTP:Puerto</c>). Estos endpoints HTTP sólo sirven para inspeccionar el buzón
+            de captura en las pruebas; no forman parte del contrato de GA2. Contrato: docs/providers/E11-smtp.md.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.TransUnion.TransUnionMock">
+            <summary>
+            E7 — TransUnion DecisionCentre (<c>ExternalSolutionExecution.svc</c>). Un único método SOAP,
+            <c>ExecuteXMLString</c>, transporta un <c>DCRequest</c> como texto y devuelve un <c>DCResponse</c>
+            como texto. El mock despacha por <c>RequestInfo</c> y guarda el estado por <c>ApplicationId</c>
+            (IDVision → OTP → validación; AQM score → historial). Contrato: docs/providers/E07-transunion.md.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.TransUnion.DcRequest">
+            <summary><c>DCRequest</c> leído del texto de <c>&lt;request&gt;</c> (acepta Field con CDATA o con XML escapado).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.TransUnion.DcRequest.Lookup(System.String)">
+            <summary>Busca en RequestInfo, en los Field por clave y en el Applicant (para las reglas de escenario).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.TransUnion.TransUnionState">
+            <summary>Transacciones TransUnion abiertas, por ApplicationId (en memoria).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.TransUnion.TransUnionState.#ctor(MockIntegrations.Api.Infrastructure.Fixtures.SequenceStore)">
+            <summary>Transacciones TransUnion abiertas, por ApplicationId (en memoria).</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.TusDatos.TusDatosMock">
+            <summary>
+            E8 — TusDatos detrás del API Gateway de Caja Honor (<c>kiosko-dev</c>). REST/JSON con <c>x-api-key</c>.
+            Patrón asíncrono: la consulta devuelve un <c>jobId</c> y GA2 sondea el job. Contrato: docs/providers/E08-tusdatos.md.
+            GA2 trata el 404 como éxito con <c>Data = null</c> y cualquier otro error como <c>IsSuccess = false</c> con el cuerpo crudo.
+            </summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.TusDatos.TusDatosMock.Guard(Microsoft.AspNetCore.Http.HttpContext,System.String,MockIntegrations.Api.Configuration.TusDatosOptions)">
+            <summary>El gateway exige <c>x-api-key</c>; si se configuró un valor esperado, debe coincidir.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.TusDatos.TusDatosState">
+            <summary>Jobs de TusDatos en curso (en memoria).</summary>
+        </member>
+        <member name="M:MockIntegrations.Api.Providers.TusDatos.TusDatosState.Poll(System.String)">
+            <summary>Cuenta un sondeo y devuelve el estado actualizado, o <c>null</c> si el job no existe.</summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.Vigia.VigiaMock">
+            <summary>
+            E4 — Vigía, verificación de terceros en listas LA/FT. Servicio PHP SOAP 1.1 <b>RPC/encoded</b>.
+            Contrato: docs/providers/E04-vigia.md. Los contratos ASMX de Vigía (carga de terceros, productos,
+            transacciones, verificación v3) están registrados en GA2 pero no se usan: no se simulan.
+            </summary>
+        </member>
+        <member name="T:MockIntegrations.Api.Providers.WorkManager.WorkManagerMock">
+            <summary>
+            E2 — WorkManager / DODO: servicio WCF <c>IWorkManagerServices</c> (basicHttpBinding, DataContractSerializer).
+            Contrato: docs/providers/E02-workmanager.md. Los DTO usan el namespace
+            <c>http://schemas.datacontract.org/2004/07/WorkManager.Entities</c> y orden alfabético estricto.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>Punto de entrada (expuesto para WebApplicationFactory en las pruebas).</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.TokenRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the TokenRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.TokenRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.TokenRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.TokenRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReportRegex_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ReportRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ReportRegex_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReportRegex_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ReportRegex_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.DispositionRegex_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the DispositionRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.DispositionRegex_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.DispositionRegex_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.DispositionRegex_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileNameRegex_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the FileNameRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.FileNameRegex_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileNameRegex_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileNameRegex_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NameRegex_4">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NameRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.NameRegex_4.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NameRegex_4.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NameRegex_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.EncodedWordRegex_5">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EncodedWordRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.EncodedWordRegex_5.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsBoundaryWordChar(System.Char)">
+            <summary>Determines whether the specified index is a boundary word character.</summary>
+            <remarks>This is the same as \w plus U+200C ZERO WIDTH NON-JOINER and U+200D ZERO WIDTH JOINER.</remarks>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsPreWordCharBoundary(System.ReadOnlySpan{System.Char},System.Int32)">
+            <summary>Determines whether the specified index is a boundary.</summary>
+            <remarks>This variant is only employed when the subsequent character will separately be validated as a word character.</remarks>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.WordCategoriesMask">
+            <summary>Provides a mask of Unicode categories that combine to form [\w].</summary>
+        </member>
+        <member name="P:System.Text.RegularExpressions.Generated.Utilities.WordCharBitmap">
+            <summary>Gets a bitmap for whether each character 0 through 127 is in [\w]</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_24065539CD2593CB885B6092E92443DA15A8A09A496B09D6CC4B4CECC1ECA7AC">
+            <summary>Supports searching for the string "=?".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_9B9296F8D16CF4B1C3BA94CBDDAC772CC446BA2F18C371F4990842204AE2CFC4">
+            <summary>Supports searching for the string "content-disposition:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_BB1C8D594CD963F65D3EAF61D3D969FEE92730B1764726818716F84676CA8389">
+            <summary>Supports searching for the string "{{".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_E4934DD42E1827A70F37EA6AD1A3EFAC4885F8DB59A81EEDFD4410FB551FAE85">
+            <summary>Supports searching for the string "&lt;Report&gt;".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_filename_OrdinalIgnoreCase">
+            <summary>Supports searching for the string "filename".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_name_OrdinalIgnoreCase">
+            <summary>Supports searching for the string "name".</summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>

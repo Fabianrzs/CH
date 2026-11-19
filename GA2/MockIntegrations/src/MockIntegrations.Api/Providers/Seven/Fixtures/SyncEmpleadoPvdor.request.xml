@@ -1,0 +1,24 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SyncEmpleadoPvdor xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <tip_codi>1</tip_codi>
+      <pvd_coda>pvd_coda</pvd_coda>
+      <pvd_dive>1</pvd_dive>
+      <pvd_nomb>pvd_nomb</pvd_nomb>
+      <pvd_apel>pvd_apel</pvd_apel>
+      <pvd_noco>pvd_noco</pvd_noco>
+      <pai_codi>1</pai_codi>
+      <dep_codi>1</dep_codi>
+      <mun_codi>1</mun_codi>
+      <arb_csuc>arb_csuc</arb_csuc>
+      <cup_nume>cup_nume</cup_nume>
+      <ban_codi>1</ban_codi>
+      <sub_codi>1</sub_codi>
+      <cup_tipo>cup_tipo</cup_tipo>
+      <dep_dire>dep_dire</dep_dire>
+      <dep_ntel>dep_ntel</dep_ntel>
+      <dep_mail>dep_mail</dep_mail>
+    </SyncEmpleadoPvdor>
+  </s:Body>
+</s:Envelope>

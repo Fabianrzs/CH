@@ -1,0 +1,1 @@
+export type EstadoReporte = 'PENDIENTE' | 'COMPLETADO' | 'FALLIDO' | 'CANCELANDO' | 'ELIMINANDO';

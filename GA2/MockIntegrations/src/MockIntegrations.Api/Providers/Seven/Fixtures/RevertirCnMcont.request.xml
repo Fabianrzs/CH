@@ -1,0 +1,8 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <RevertirCnMcont xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <emp_codi>1</emp_codi>
+      <mco_cont>1</mco_cont>
+    </RevertirCnMcont>
+  </s:Body>
+</s:Envelope>

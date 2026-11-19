@@ -1,0 +1,33 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarMovContable xmlns="http://seven/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <pContable>
+        <vDetalle>
+          <TSCnDmcon>
+            <Cue_codi>Cue_codi</Cue_codi>
+            <Dmc_desc>Dmc_desc</Dmc_desc>
+            <Dmc_cant>1.5</Dmc_cant>
+            <Dmc_acti>1.5</Dmc_acti>
+            <Dmc_refe>Dmc_refe</Dmc_refe>
+            <Dmc_vadb>1.5</Dmc_vadb>
+            <Dmc_vacr>1.5</Dmc_vacr>
+            <Dmc_vaba>1.5</Dmc_vaba>
+            <Ter_coda>Ter_coda</Ter_coda>
+            <Arb_codc>Arb_codc</Arb_codc>
+            <Arb_coda>Arb_coda</Arb_coda>
+            <Arb_codp>Arb_codp</Arb_codp>
+            <Arb_cods>Arb_cods</Arb_cods>
+            <Ter_codm>Ter_codm</Ter_codm>
+          </TSCnDmcon>
+        </vDetalle>
+        <Emp_codi>1</Emp_codi>
+        <Top_codi>1</Top_codi>
+        <Mco_nume>1</Mco_nume>
+        <Mco_fech>2026-01-15T00:00:00</Mco_fech>
+        <Mod_codi>1</Mod_codi>
+        <Arb_csuc>Arb_csuc</Arb_csuc>
+        <Mco_desc>Mco_desc</Mco_desc>
+      </pContable>
+    </InsertarMovContable>
+  </s:Body>
+</s:Envelope>

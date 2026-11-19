@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_GetParametersResponse xmlns="http://tempuri.org/">
+      <Form_GetParametersResult xmlns:d4p1="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <d4p1:Form i:nil="true" />
+        <d4p1:Message>Operación exitosa (MockIntegrations)</d4p1:Message>
+        <d4p1:Success>true</d4p1:Success>
+      </Form_GetParametersResult>
+    </Form_GetParametersResponse>
+  </s:Body>
+</s:Envelope>

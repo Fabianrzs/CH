@@ -1,0 +1,12 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SyncFaClienComplexResponse xmlns="http://seven/">
+      <SyncFaClienComplexResult>
+        <Retorno>1</Retorno>
+        <TxtError>TxtError</TxtError>
+        <CliCodi>1</CliCodi>
+        <DclCodd>1</DclCodd>
+      </SyncFaClienComplexResult>
+    </SyncFaClienComplexResponse>
+  </s:Body>
+</s:Envelope>

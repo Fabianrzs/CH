@@ -1,0 +1,8 @@
+button.deleteIconButton:hover {
+    background-color: initial !important;
+    color: #ff5050 !important;
+}
+
+button.deleteIconButton {
+    color: #ff5050;
+}

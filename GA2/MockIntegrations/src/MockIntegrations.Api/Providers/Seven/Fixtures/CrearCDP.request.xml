@@ -1,0 +1,29 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CrearCDP xmlns="http://seven/">
+      <pCDP>
+        <vDetalle>
+          <TSPgDmpre>
+            <Rub_codi>Rub_codi</Rub_codi>
+            <Pro_codi>Pro_codi</Pro_codi>
+            <Arb_codc>Arb_codc</Arb_codc>
+            <Arb_coda>Arb_coda</Arb_coda>
+            <Arb_codp>Arb_codp</Arb_codp>
+            <Dmp_valo>1.5</Dmp_valo>
+            <Dmp_desc>Dmp_desc</Dmp_desc>
+          </TSPgDmpre>
+        </vDetalle>
+        <Emp_codi>1</Emp_codi>
+        <Top_codi>1</Top_codi>
+        <Mpr_nume>1</Mpr_nume>
+        <Mpr_fech>2026-01-15T00:00:00</Mpr_fech>
+        <Mpr_desc>Mpr_desc</Mpr_desc>
+        <Arb_csuc>Arb_csuc</Arb_csuc>
+        <Ter_coda>Ter_coda</Ter_coda>
+        <Mpr_tdos>Mpr_tdos</Mpr_tdos>
+        <Mpr_ndos>1</Mpr_ndos>
+        <Uni_codi>1</Uni_codi>
+      </pCDP>
+    </CrearCDP>
+  </s:Body>
+</s:Envelope>

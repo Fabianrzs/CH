@@ -1,0 +1,14 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_GetFileCodes xmlns="http://tempuri.org/">
+      <request xmlns:a="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:BarCode>BarCode</a:BarCode>
+        <a:DirectoryCode>DirectoryCode</a:DirectoryCode>
+        <a:Header>
+          <a:Token>Token</a:Token>
+          <a:User>User</a:User>
+        </a:Header>
+      </request>
+    </Form_GetFileCodes>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_DeleteResponse xmlns="http://tempuri.org/">
+      <Form_DeleteResult i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" />
+    </Form_DeleteResponse>
+  </s:Body>
+</s:Envelope>

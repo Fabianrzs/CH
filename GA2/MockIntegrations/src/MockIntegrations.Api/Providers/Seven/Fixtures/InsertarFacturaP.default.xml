@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarFacturaPResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <InsertarFacturaPResult>&lt;PO_FACTU&gt;&lt;RETORNO&gt;0&lt;/RETORNO&gt;&lt;TXTERROR&gt;&lt;/TXTERROR&gt;&lt;FAC_CONT&gt;{{seq:seven.fac_cont:77812}}&lt;/FAC_CONT&gt;&lt;FAC_NUME&gt;{{seq:seven.fac_nume:1203}}&lt;/FAC_NUME&gt;&lt;/PO_FACTU&gt;</InsertarFacturaPResult>
+    </InsertarFacturaPResponse>
+  </s:Body>
+</s:Envelope>

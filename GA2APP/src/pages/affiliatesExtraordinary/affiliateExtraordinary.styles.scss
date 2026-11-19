@@ -1,0 +1,159 @@
+.description {
+    width: 100%;
+    margin: 2rem 0;
+    font-size: .85rem;
+    font-weight: 500;
+}
+
+.tab-selected-row {
+    display: flex;
+    margin: 2rem 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .tab-selected-title {
+ 
+        font-weight: 900;
+        font-size: 2rem;
+        span {
+            color: #FEC917;
+        }
+    }
+    .tab-selected-subtitle {
+        font-size: .9rem;
+    }
+}
+
+.schedule-table-schedule {
+    margin-top: 2rem;
+    color: #676767;
+    font-size: .9rem;
+    th {
+        background-color: #FEC917;
+        &:first-child {
+            border-radius: 12px 0 0 0;
+            padding: 10px;
+            width: 10%;
+            margin: 30px;
+        }
+        &:last-child {
+            border-radius: 0 12px 0 0;
+        }
+    }
+    tr:nth-child(odd) {
+        background-color: #C4C4C4;
+        padding: 80%
+    }
+}
+
+.table-schedule {
+    width: 100%;
+   
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.table-schedule thead {
+    background: #f5fbfe;
+    color: #42b7ef;
+    font-size: 16px;
+    padding-left: 5%;
+}
+
+.table-schedule tbody {
+    font-size: 20px;
+}
+
+.table-schedule tbody tr {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(254, 254, 254, 0) 99%, rgb(216, 216, 216) 99%, rgb(255, 255, 255) 100%);
+    font-size: 15px;
+}
+
+.table-schedule td {
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgba(255, 255, 255, 0)) 0% 100%;
+}
+
+.table-schedule-tr-01 {
+    border-image: linear-gradient(to bottom, rgba(255, 23, 23, 0), rgb(255, 255, 255), rgba(221, 32, 32, 0)) 0% 100%;
+    font-weight: 1;
+    border-top: 10px solid;
+}
+
+.tab-space-01 {
+    width: 5%;
+    text-align: left;
+}
+
+.column1 {
+    width: 20%;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.column2 {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.tipoOperacion1 {
+    width: 15%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.tipoOperacion2 {
+    width: 15%;
+    text-align: left;
+}
+
+.column2 {
+    width: 12%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.column3 {
+    width: 12%;
+    text-align: left;
+}
+
+.column4 {
+    width: 12%;
+    text-align: left;
+}
+
+.causal1 {
+    width: 12%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.causal2 {
+    width: 12%;
+    text-align: left;
+}
+
+.NMatricula2 {
+    width: 20%;
+    text-align: left;
+}
+
+.FechaNov {
+    width: 20%;
+    text-align: left;
+}
+
+.TipoSoli {
+    width: 20%;
+    text-align: left;
+}
+
+.detalles {
+    width: 20%;
+    text-align: left;
+}
+
+.MuiFormHelperText-root {
+    color: rgba(56, 56, 56, 0.824) !important;
+}

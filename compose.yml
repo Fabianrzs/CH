@@ -1,0 +1,168 @@
+# Entorno local completo de GA2 con podman:  podman compose up -d --build
+#   Frontend GA2APP ........ http://localhost:3000
+#   API Identity ........... http://localhost:5001/swagger
+#   API GA2 ................ http://localhost:5003/swagger
+#   API BUA ................ http://localhost:5005/swagger
+#   Worker ................. http://localhost:5007/hc  (perfil "worker", ver nota en el servicio)
+#   MockIntegrations ....... http://localhost:5080/swagger   (SMTP de captura en 2525)
+#   SQL Server ............. localhost,1433  (sa / MSSQL_SA_PASSWORD de .env)
+# Las integraciones externas apuntan a MockIntegrations; Service Bus es el emulador oficial.
+name: ga2
+
+x-api: &api
+  platform: linux/amd64
+  restart: unless-stopped
+  env_file: docker/integraciones-mocks.env
+  depends_on:
+    db-restore:
+      condition: service_completed_successfully
+  volumes:
+    - ./docker/servicebus-tls/certs/ca.crt:/usr/local/share/ca-certificates/ga2-local-ca.crt:ro
+
+x-api-env: &api-env
+  ASPNETCORE_ENVIRONMENT: Development
+  Apps__GA2APP: http://localhost:3000
+  Apis__IDENTITY: http://identity:8080/api/
+  Apis__GA2: http://ga2:8080/api/
+  Apis__BUA: http://bua:8080/api/
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_PID: Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+      # El RESTORE lo ejecuta este proceso, por eso los respaldos se montan aquí.
+      - ./GA2_Kriterion_21102026.bak:/backups/GA2_Kriterion_21102026.bak:ro
+      - ./BUA_kriterion_21102026.bak:/backups/BUA_kriterion_21102026.bak:ro
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  # Restaura GA2_Kriterion_*.bak y BUA_kriterion_*.bak una sola vez (si las bases no existen).
+  db-restore:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    entrypoint: ["/bin/bash", "/restore.sh"]
+    environment:
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      GA2_DB: GA2_DEVELOP
+      GA2_BAK: GA2_Kriterion_21102026.bak
+      BUA_DB: BUA_DEVELOP
+      BUA_BAK: BUA_kriterion_21102026.bak
+    volumes:
+      - ./docker/sql/restore.sh:/restore.sh:ro
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+  mockintegrations:
+    build:
+      context: ./GA2/MockIntegrations
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MockIntegrations__ServiceBus__ConnectionString: "Endpoint=sb://servicebus-emulator;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;"
+    ports:
+      - "5080:5080"
+      - "2525:2525"
+
+  servicebus-emulator:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
+    restart: unless-stopped
+    environment:
+      SQL_SERVER: sqlserver
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./GA2/MockIntegrations/docker/servicebus-emulator/Config.json:/ServiceBus_Emulator/ConfigFiles/Config.json:ro
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+  # GA2 usa Azure.Messaging.ServiceBus 7.9.0, que sólo habla HTTPS/AMQPS: este proxy pone TLS delante del emulador.
+  servicebus-tls:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    volumes:
+      - ./docker/servicebus-tls/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/servicebus-tls/certs:/certs:ro
+    depends_on:
+      - servicebus-emulator
+
+  identity:
+    <<: *api
+    build: { context: ./GA2, target: identity }
+    image: localhost/ga2-identity
+    entrypoint: ["sh", "-c", "update-ca-certificates >/dev/null && exec dotnet Identity.dll"]
+    environment:
+      <<: *api-env
+      ConnectionStrings__connectionName: "Server=sqlserver;Database=GA2_DEVELOP;User Id=sa;Password=${MSSQL_SA_PASSWORD}"
+    ports:
+      - "5001:8080"
+
+  ga2:
+    <<: *api
+    build: { context: ./GA2, target: ga2 }
+    image: localhost/ga2-api
+    entrypoint: ["sh", "-c", "update-ca-certificates >/dev/null && exec dotnet GA2.dll"]
+    environment:
+      <<: *api-env
+      ConnectionStrings__connectionName: "Server=sqlserver;Database=GA2_DEVELOP;User Id=sa;Password=${MSSQL_SA_PASSWORD}"
+    ports:
+      - "5003:8080"
+    depends_on:
+      db-restore:
+        condition: service_completed_successfully
+      servicebus-tls:
+        condition: service_started
+      mockintegrations:
+        condition: service_started
+
+  bua:
+    <<: *api
+    build: { context: ./GA2, target: bua }
+    image: localhost/ga2-bua
+    entrypoint: ["sh", "-c", "update-ca-certificates >/dev/null && exec dotnet BUA.dll"]
+    environment:
+      <<: *api-env
+      ConnectionStrings__connectionName: "Server=sqlserver;Database=BUA_DEVELOP;User Id=sa;Password=${MSSQL_SA_PASSWORD}"
+    ports:
+      - "5005:8080"
+
+  # Desactivado por defecto: el Worker no arranca por un error de DI en su código (IEmbargosProvider no está
+  # registrado y ClienteRepository lo necesita). Una vez corregido:  podman compose --profile worker up -d worker
+  worker:
+    <<: *api
+    profiles: ["worker"]
+    build: { context: ./GA2, target: worker }
+    image: localhost/ga2-worker
+    entrypoint: ["sh", "-c", "update-ca-certificates >/dev/null && exec dotnet Worker.dll"]
+    environment:
+      <<: *api-env
+      ConnectionStrings__connectionGA2: "Server=sqlserver;Database=GA2_DEVELOP;User Id=sa;Password=${MSSQL_SA_PASSWORD}"
+      ConnectionStrings__connectionBUA: "Server=sqlserver;Database=BUA_DEVELOP;User Id=sa;Password=${MSSQL_SA_PASSWORD}"
+    ports:
+      - "5007:8080"
+
+  frontend:
+    build:
+      context: ./GA2APP
+    platform: linux/amd64
+    image: localhost/ga2-app
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+
+volumes:
+  sqldata:

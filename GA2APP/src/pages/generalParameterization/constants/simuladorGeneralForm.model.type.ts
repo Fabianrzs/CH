@@ -1,0 +1,28 @@
+import { SimuladorGeneralDto } from "../../../types/simuladorGeneral.model.type";
+
+export const SimuladorGeneralForm: SimuladorGeneralDto = {
+    parametroSalarioMinimo: 0,
+    porcentajeInflacion: 0,
+    porcentajeViviendaVis: 0,
+    porcentajeViviendaNoVis: 0,
+    limiteSalariosVis: 0,
+    diasPreaprobado: 0,
+    puntajeMinimoCentrales: 0,
+    porcentajeMinimoEndeudamiento: 0,
+    // vigenciaDiasConsultaCentrales: 0,
+    tarifaUnicaAvaluos: 0,
+    tarifaEstudioTitulos: 0,
+    porcentajeMinimoCanonInicial: 0,
+    porcentajeMaximoCanonInicial: 0,
+    porcentajeMaximoOpcionCompra: 0,
+    maximoMesesAlivioTasa: 0,
+    numeroMesesAlivio: 0,
+    factorAhorro: 0,
+    factorCesantias: 0,
+    porcentajeIncrementoAnual: 0,
+    valor_SMMLV: 0,
+    mesesDiferir: 0,
+    valorIpvAnual: 0,
+    valorIpvAnualOtrasCiudades: 0,
+    tasaUsuraPeriodica: 0,
+};

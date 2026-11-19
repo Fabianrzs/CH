@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ExecuteXMLString xmlns="http://tempuri.org/">
+      <request>&lt;DCRequest xmlns="http://transunion.com/dc/extsvc"&gt;&lt;Authentication type="OnDemand"&gt;&lt;UserId&gt;USUARIO_TU&lt;/UserId&gt;&lt;Password&gt;CLAVE_TU&lt;/Password&gt;&lt;/Authentication&gt;&lt;RequestInfo&gt;&lt;SolutionSetId&gt;142&lt;/SolutionSetId&gt;&lt;ExecuteLatestVersion&gt;true&lt;/ExecuteLatestVersion&gt;&lt;ExecutionMode&gt;NewWithContext&lt;/ExecutionMode&gt;&lt;/RequestInfo&gt;&lt;Fields&gt;&lt;Field key="PrimaryApplicant"&gt;&lt;![CDATA[&lt;Applicant&gt;&lt;IdType&gt;1&lt;/IdType&gt;&lt;IdNumber&gt;1020304050&lt;/IdNumber&gt;&lt;LastName&gt;PEREZ&lt;/LastName&gt;&lt;RecentPhoneNumber&gt;3001234567&lt;/RecentPhoneNumber&gt;&lt;IdExpeditionDate&gt;15/01/2010&lt;/IdExpeditionDate&gt;&lt;/Applicant&gt;]]&gt;&lt;/Field&gt;&lt;/Fields&gt;&lt;/DCRequest&gt;</request>
+    </ExecuteXMLString>
+  </s:Body>
+</s:Envelope>

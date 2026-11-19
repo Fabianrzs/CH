@@ -1,0 +1,251 @@
+.tab-space-01 {
+    width: 20%;
+    text-align: left;
+}
+
+.column1 {
+    width: 20%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.fuerza {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.fuerza2 {
+    width: 15%;
+    text-align: left;
+}
+
+.unidadEje {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.unidadEje2 {
+    width: 15%;
+    text-align: left;
+}
+
+.fechaReporte {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.fechaReporte2 {
+    width: 10%;
+    text-align: left;
+}
+
+.fechaInicio {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.fechaInicio2 {
+    width: 10%;
+    text-align: left;
+}
+
+.fechaFin {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.fechaFin2 {
+    width: 10%;
+    text-align: left;
+}
+
+.periodo {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.periodo2 {
+    width: 8%;
+    text-align: left;
+}
+
+.formato {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.formato2 {
+    width: 8%;
+    text-align: left;
+}
+
+.acciones {
+    width: 2%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.acciones2 {
+    width: 15%;
+    text-align: left;
+}
+
+.medioEnv {
+    width: 5%;
+    text-align: left;
+    background-color: #e0f5ff;
+}
+
+.medioEnv2 {
+    width: 8%;
+    text-align: left;
+}
+
+// .description {
+//     width: 100%;
+//     margin: 2rem 0;
+//     font-size: .85rem;
+//     font-weight: 500;
+// }
+// .tab-selected-row {
+//     display: flex;
+//     margin: 2rem 0;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+//     .tab-selected-title {
+//         // color: #1C3F8B;
+//         font-weight: 900;
+//         font-size: 2rem;
+//         span {
+//             color: #FEC917;
+//         }
+//     }
+//     .tab-selected-subtitle {
+//         font-size: .9rem;
+//     }
+// }
+// .schedule-table-schedule {
+//     margin-top: 2rem;
+//     color: #676767;
+//     font-size: .9rem;
+//     th {
+//         background-color: #FEC917;
+//         &:first-child {
+//             border-radius: 12px 0 0 0;
+//             padding: 10px;
+//             width: 10%;
+//             margin: 30px;
+//         }
+//         &:last-child {
+//             border-radius: 0 12px 0 0;
+//         }
+//     }
+//     tr:nth-child(odd) {
+//         background-color: #C4C4C4;
+//         padding: 80%
+//     }
+//     // td {
+//     //     color: #ef4242;
+//     //     text-align: center;
+//     // }
+// }
+// .table-schedule {
+//     width: 100%;
+//     // color: #242424;
+//     font-size: 13px;
+//     font-weight: 300;
+// }
+// .table-schedule thead {
+//     background: #f5fbfe;
+//     color: #42b7ef;
+//     font-size: 16px;
+//     padding-left: 5%;
+// }
+// .table-schedule tbody {
+//     font-size: 20px;
+// }
+// .table-schedule tbody tr {
+//     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(254, 254, 254, 0) 99%, rgb(216, 216, 216) 99%, rgb(255, 255, 255) 100%);
+//     font-size: 15px;
+// }
+// .table-schedule td {
+//     border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgba(255, 255, 255, 0)) 0% 100%;
+// }
+// .table-schedule-tr-01 {
+//     border-image: linear-gradient(to bottom, rgba(255, 23, 23, 0), rgb(255, 255, 255), rgba(221, 32, 32, 0)) 0% 100%;
+//     font-weight: 1;
+//     border-top: 10px solid;
+// }
+// .tab-space-01 {
+//     padding: 0.8em 0;
+// }
+// .force {
+//     width: 20%;
+//     padding-left: 2.5%;
+// }
+// .executingUnit {
+//     width: 20%;
+//     padding-left: 2.5%;
+// }
+// .dateReport {
+//     width: 10%;
+//     padding-left: 1.5%;
+// }
+// .startDate {
+//     width: 10%;
+//     padding-left: 1.5%;
+// }
+// .finishDate {
+//     width: 10%;
+//     padding-left: 1.5%;
+// }
+// .period {
+//     width: 10%;
+//     padding-left: 1.5%;
+// }
+// .format {
+//     width: 7%;
+//     padding-left: 0.5%;
+// }
+// .averageCost {
+//     width: 10%;
+//     padding-left: 1.5%;
+// }
+// .actions {
+//     padding-left: 0.5%;
+// }
+// .executingUnit2 {
+//     width: 30%;
+//     padding-left: 2.5%;
+//     color: #42b7ef
+// }
+// .executingUnit3 {
+//     width: 30%;
+//     padding-left: 2.5%;
+//     color: #222627
+// }
+// .dateReport2 {
+//     width: 30%;
+//     padding-left: 1.5%;
+// }
+// .dateReport3 {
+//     width: 30%;
+//     padding-left: 1.5%;
+//     text-align: left;
+// }
+// .actions2 {
+//     padding-left: 0.5%;
+//     width: 30%;
+// }
+// .actions3 {
+//     padding-left: 0.5%;
+//     width: 30%;
+// }

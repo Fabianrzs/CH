@@ -1,0 +1,35 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_Insert xmlns="http://tempuri.org/">
+      <request xmlns:a="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:CheckWorkflow>true</a:CheckWorkflow>
+        <a:Data>
+          <a:DictionaryDto>
+            <a:Field>Field</a:Field>
+            <a:Key>Key</a:Key>
+            <a:Value>Value</a:Value>
+          </a:DictionaryDto>
+        </a:Data>
+        <a:Files>
+          <a:FileDto>
+            <a:Base64String>Base64String</a:Base64String>
+            <a:Description>Description</a:Description>
+            <a:DirectoryCode>DirectoryCode</a:DirectoryCode>
+            <a:DocumentTypeCode>DocumentTypeCode</a:DocumentTypeCode>
+            <a:Ext>Ext</a:Ext>
+            <a:GUID>GUID</a:GUID>
+          </a:FileDto>
+        </a:Files>
+        <a:FormCode>FormCode</a:FormCode>
+        <a:Header>
+          <a:Token>Token</a:Token>
+          <a:User>User</a:User>
+        </a:Header>
+        <a:OfficeCode>OfficeCode</a:OfficeCode>
+        <a:OperationUser>OperationUser</a:OperationUser>
+        <a:ProcessId>1</a:ProcessId>
+        <a:nextStepUser>nextStepUser</a:nextStepUser>
+      </request>
+    </Form_Insert>
+  </s:Body>
+</s:Envelope>

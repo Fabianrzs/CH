@@ -1,0 +1,10 @@
+export const CREDITO = {
+    LEASING: 1,
+    HIPOTECARIO: 2,
+};
+
+export const TIPO_AFILIADO = {
+    SOLUCION_VIVIENDA: 1,
+    ADMINISTRACION_CESANTIAS: 2,
+    VETERANOS: 14,
+};

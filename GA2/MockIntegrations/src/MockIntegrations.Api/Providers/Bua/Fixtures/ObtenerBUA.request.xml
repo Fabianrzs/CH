@@ -1,0 +1,10 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <ObtenerBUA xmlns="http://tempuri.org/">
+      <afiliado xmlns:a="http://schemas.datacontract.org/2004/07/Kriterion.BEL" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:identificacion>identificacion</a:identificacion>
+        <a:tipo_Id>1</a:tipo_Id>
+      </afiliado>
+    </ObtenerBUA>
+  </s:Body>
+</s:Envelope>

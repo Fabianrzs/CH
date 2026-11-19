@@ -1,0 +1,29 @@
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    border-bottom: 1px solid #d8dae5;
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 12px;
+}
+
+ul.breadcrumb li a {
+    font-size: 20px;
+    text-decoration: none;
+    padding: 0 0.5em;
+    color: #818388;
+}
+
+ul.breadcrumb li a:hover {
+    color: #1c3f8b;
+}
+

@@ -1,0 +1,18 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Workflow_RunTask xmlns="http://tempuri.org/">
+      <request xmlns:a="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:BarCode>BarCode</a:BarCode>
+        <a:Comment>Comment</a:Comment>
+        <a:Header>
+          <a:Token>Token</a:Token>
+          <a:User>User</a:User>
+        </a:Header>
+        <a:NextStepUser>NextStepUser</a:NextStepUser>
+        <a:ProcessId>1</a:ProcessId>
+        <a:Step>1</a:Step>
+        <a:WorkflowId>1</a:WorkflowId>
+      </request>
+    </Workflow_RunTask>
+  </s:Body>
+</s:Envelope>

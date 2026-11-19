@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ActModalidadCupo xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <cli_coda>cli_coda</cli_coda>
+      <arb_codc>arb_codc</arb_codc>
+      <ite_moda>ite_moda</ite_moda>
+      <dcl_cupo>1.5</dcl_cupo>
+    </ActModalidadCupo>
+  </s:Body>
+</s:Envelope>

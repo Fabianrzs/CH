@@ -1,0 +1,46 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ValidarBiometriaResponse xmlns="http://tempuri.org/">
+      <ValidarBiometriaResult>
+        <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+          <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+            <xs:complexType>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="Table1">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="A001NUM_IDENTIFICACION" type="xs:unsignedInt" minOccurs="0" />
+                      <xs:element name="A001PRIMER_APELLIDO" type="xs:string" minOccurs="0" />
+                      <xs:element name="A001SEGUNDO_APELLIDO" type="xs:string" minOccurs="0" />
+                      <xs:element name="A001PRIMER_NOMBRE" type="xs:string" minOccurs="0" />
+                      <xs:element name="A001SEGUNDO_NOMBRE" type="xs:string" minOccurs="0" />
+                      <xs:element name="A008CEDULA" type="xs:unsignedByte" minOccurs="0" />
+                      <xs:element name="A008ROSTRO" type="xs:unsignedByte" minOccurs="0" />
+                      <xs:element name="A008HUELLA" type="xs:unsignedByte" minOccurs="0" />
+                      <xs:element name="A008FIRMA" type="xs:unsignedByte" minOccurs="0" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+        </xs:schema>
+        <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+          <NewDataSet xmlns="">
+            <Table1 diffgr:id="Table11" msdata:rowOrder="0">
+              <A001NUM_IDENTIFICACION>{{req:identificacion|1020304050}}</A001NUM_IDENTIFICACION>
+              <A001PRIMER_APELLIDO>PEREZ</A001PRIMER_APELLIDO>
+              <A001SEGUNDO_APELLIDO>GOMEZ</A001SEGUNDO_APELLIDO>
+              <A001PRIMER_NOMBRE>JUAN</A001PRIMER_NOMBRE>
+              <A001SEGUNDO_NOMBRE>CARLOS</A001SEGUNDO_NOMBRE>
+              <A008CEDULA>1</A008CEDULA>
+              <A008ROSTRO>1</A008ROSTRO>
+              <A008HUELLA>1</A008HUELLA>
+              <A008FIRMA>1</A008FIRMA>
+            </Table1>
+          </NewDataSet>
+        </diffgr:diffgram>
+      </ValidarBiometriaResult>
+    </ValidarBiometriaResponse>
+  </soap:Body>
+</soap:Envelope>

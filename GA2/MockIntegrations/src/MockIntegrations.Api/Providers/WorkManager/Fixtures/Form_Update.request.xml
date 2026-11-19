@@ -1,0 +1,26 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Form_Update xmlns="http://tempuri.org/">
+      <request xmlns:a="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:Data>
+          <a:DictionaryDto>
+            <a:Field>Field</a:Field>
+            <a:Key>Key</a:Key>
+            <a:Value>Value</a:Value>
+          </a:DictionaryDto>
+        </a:Data>
+        <a:FilterParameters>
+          <a:Field>Field</a:Field>
+          <a:Operator>Operator</a:Operator>
+          <a:Value>Value</a:Value>
+        </a:FilterParameters>
+        <a:FormCode>FormCode</a:FormCode>
+        <a:Header>
+          <a:Token>Token</a:Token>
+          <a:User>User</a:User>
+        </a:Header>
+        <a:OperationUser>OperationUser</a:OperationUser>
+      </request>
+    </Form_Update>
+  </s:Body>
+</s:Envelope>

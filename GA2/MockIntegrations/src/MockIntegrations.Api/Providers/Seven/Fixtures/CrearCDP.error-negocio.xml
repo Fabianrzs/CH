@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CrearCDPResponse xmlns="http://seven/">
+      <CrearCDPResult>&lt;PG_MPRES&gt;&lt;RETORNO&gt;1&lt;/RETORNO&gt;&lt;TXTERROR&gt;Rubro sin saldo disponible (mock)&lt;/TXTERROR&gt;&lt;/PG_MPRES&gt;</CrearCDPResult>
+    </CrearCDPResponse>
+  </s:Body>
+</s:Envelope>

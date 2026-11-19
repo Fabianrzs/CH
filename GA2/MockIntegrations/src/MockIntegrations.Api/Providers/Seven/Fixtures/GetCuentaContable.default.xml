@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetCuentaContableResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <GetCuentaContableResult>GetCuentaContableResult</GetCuentaContableResult>
+    </GetCuentaContableResponse>
+  </s:Body>
+</s:Envelope>

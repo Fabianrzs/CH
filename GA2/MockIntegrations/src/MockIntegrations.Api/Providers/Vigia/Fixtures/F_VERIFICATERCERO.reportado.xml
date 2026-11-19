@@ -1,0 +1,11 @@
+<s:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <ns1:F_VERIFICATERCEROResponse s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="https://vigia.cajahonor.gov.co/WebSvc">
+      <return xmlns:tns="https://vigia.cajahonor.gov.co/WebSvc" xsi:type="tns:Resultado">
+        <Encontrado xsi:type="xsd:string">S</Encontrado>
+        <Metodo xsi:type="xsd:string">DOCUMENTO</Metodo>
+        <Listas xsi:type="xsd:string">OFAC, ONU</Listas>
+      </return>
+    </ns1:F_VERIFICATERCEROResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarFacturaPResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <InsertarFacturaPResult>&lt;PO_FACTU&gt;&lt;RETORNO&gt;1&lt;/RETORNO&gt;&lt;TXTERROR&gt;Error de negocio simulado por MockIntegrations (InsertarFacturaP)&lt;/TXTERROR&gt;&lt;/PO_FACTU&gt;</InsertarFacturaPResult>
+    </InsertarFacturaPResponse>
+  </s:Body>
+</s:Envelope>

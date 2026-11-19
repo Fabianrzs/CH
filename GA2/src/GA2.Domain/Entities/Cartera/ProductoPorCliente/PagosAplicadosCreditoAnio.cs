@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace GA2.Domain.Entities
+{
+    public class PagosAplicadosCreditoAnio
+    {
+        public DateTime CPG_FECHA_APLICACION { get; set; }
+        public decimal CPG_VALOR_PAGO { get; set; }
+        public decimal CPG_ABONO_CAPITAL { get; set; }
+        public decimal CPG_ABONO_INTERES_CORRIENTE { get; set; }
+        public decimal CPG_ABONO_INTERES_MORA { get; set; }
+        public decimal CPG_ABONO_SEGURO_VIDA { get; set; }
+        public decimal CPG_ABONO_SEGURO_HOGAR { get; set; }
+    }
+}

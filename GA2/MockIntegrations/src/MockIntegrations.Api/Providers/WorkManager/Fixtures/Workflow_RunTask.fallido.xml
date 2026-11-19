@@ -1,0 +1,18 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Workflow_RunTaskResponse xmlns="http://tempuri.org/">
+      <Workflow_RunTaskResult xmlns:d4p1="http://schemas.datacontract.org/2004/07/WorkManager.Entities" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <d4p1:Data>
+          <d4p1:DictionaryDto>
+            <d4p1:Field>Field</d4p1:Field>
+            <d4p1:Key>Key</d4p1:Key>
+            <d4p1:Value>Value</d4p1:Value>
+          </d4p1:DictionaryDto>
+        </d4p1:Data>
+        <d4p1:Message>Error funcional simulado por MockIntegrations (Workflow_RunTask)</d4p1:Message>
+        <d4p1:Rows>1</d4p1:Rows>
+        <d4p1:Success>false</d4p1:Success>
+      </Workflow_RunTaskResult>
+    </Workflow_RunTaskResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarCDPResponse xmlns="http://seven/">
+      <InsertarCDPResult>&lt;PG_MPRES&gt;&lt;RETORNO&gt;1&lt;/RETORNO&gt;&lt;TXTERROR&gt;Error de negocio simulado por MockIntegrations (InsertarCDP)&lt;/TXTERROR&gt;&lt;/PG_MPRES&gt;</InsertarCDPResult>
+    </InsertarCDPResponse>
+  </s:Body>
+</s:Envelope>

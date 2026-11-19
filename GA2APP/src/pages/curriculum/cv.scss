@@ -1,0 +1,36 @@
+.contenedores{
+    width: 92%;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.client-table {
+
+    margin-top: 2rem;
+    color: #676767;
+    font-size: .9rem;
+
+    th {
+        background-color: #FEC917;
+
+        &:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 12px 0 0;
+        }
+    }
+
+    tr:nth-child(odd) {
+        background-color: #C4C4C4;
+    }
+
+    td {
+        text-align: center;
+    }
+}
+
+

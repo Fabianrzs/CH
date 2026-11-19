@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <InsertarCnMcontResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://seven/">
+      <InsertarCnMcontResult>&lt;CN_MCONT&gt;&lt;RETORNO&gt;0&lt;/RETORNO&gt;&lt;TXTERROR&gt;&lt;/TXTERROR&gt;&lt;MCO_CONT&gt;{{seq:seven.mco_cont:551200}}&lt;/MCO_CONT&gt;&lt;MCO_NUME&gt;{{seq:seven.mco_nume:3301}}&lt;/MCO_NUME&gt;&lt;/CN_MCONT&gt;</InsertarCnMcontResult>
+    </InsertarCnMcontResponse>
+  </s:Body>
+</s:Envelope>

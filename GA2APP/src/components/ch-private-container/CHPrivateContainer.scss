@@ -1,0 +1,11 @@
+$text-color: #42b7ef;
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: $text-color;
+    align-items: inherit;
+    width: 110%;
+    margin-left: -5%;
+    margin-right: 150%;
+}

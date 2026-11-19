@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        p {
+            color: black;
+            font-size: 18pt;
+            text-align: justify;
+            font-family: Arial, sans-serif;
+        }
+
+        .title, .main-content {
+            margin-top: 120px;
+        }
+
+            .title p {
+                font-weight: bold;
+                text-align: center;
+            }
+
+        .seccion-jefe-area {
+            margin-top: 120px;
+        }
+
+        .seccion-proyeccion {
+            margin-top: 200px;
+        }
+
+        .seccion-jefe-area p {
+            text-align: center;
+        }
+
+        .jefe-area {
+            font-weight: bold;
+            display: block;
+        }
+
+        .seccion-proyeccion p {
+            font-size: 16pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <p>
+            EL JEFE DEL ÁREA DE CRÉDITO Y CARTERA
+            <br />
+            <br />
+            CERTIFICA QUE:
+            <br />
+        </p>
+    </div>
+    <div class="main-content">
+        <p>
+            La CAJA PROMOTORA DE VIVIENDA MILITAR Y DE POLICÍA, le concedió a el(la) señor(a) [@cli_nombres]
+            identificado con la cédula de ciudadanía No. [@cli_identificacion] un préstamo por la suma de [@valor_desembolso].
+        </p>
+        <p>
+            Pagados en un plazo de [@plazo] contados a partir del día [@fecha_pago_inicial], y a la fecha se encuentra a PAZ Y SALVO con esta Entidad por este concepto.
+        </p>
+        <p>
+            Se expide la presente certificación [@fecha_expedicion], en la ciudad de [@ciudad_expedicion], a solicitud del Interesado(a).
+        </p>
+    </div>
+    <div class="seccion-jefe-area">
+        <p>
+            <span class="jefe-area">[@jefe_area]</span>
+            Jefe Área de Crédito y Cartera
+        </p>
+    </div>
+    <div class="seccion-proyeccion">
+        <p>
+            Proy. y Elab: [@elaboro].
+            <br />
+            Líder Grupo de Admon, de Crédito y cartera.
+        </p>
+    </div>
+</body>
+</html>

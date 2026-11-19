@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarCDP xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <top_codi>1</top_codi>
+      <mpr_nume>1</mpr_nume>
+      <mpr_fech>2026-01-15T00:00:00</mpr_fech>
+      <mpr_desc>mpr_desc</mpr_desc>
+      <arb_cods>arb_cods</arb_cods>
+      <ter_coda>ter_coda</ter_coda>
+      <mpr_tdos>mpr_tdos</mpr_tdos>
+      <mpr_ndos>1</mpr_ndos>
+      <uni_codi>1</uni_codi>
+    </InsertarCDP>
+  </s:Body>
+</s:Envelope>

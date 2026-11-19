@@ -1,0 +1,10 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <GenerarReporteV2Response xmlns="http://tempuri.org/">
+      <GenerarReporteV2Result>
+        <Message>No se encontró información para el reporte</Message>
+        <Status>false</Status>
+      </GenerarReporteV2Result>
+    </GenerarReporteV2Response>
+  </s:Body>
+</s:Envelope>

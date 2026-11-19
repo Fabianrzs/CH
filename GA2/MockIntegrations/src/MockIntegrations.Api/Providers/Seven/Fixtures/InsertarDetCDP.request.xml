@@ -1,0 +1,15 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InsertarDetCDP xmlns="http://seven/">
+      <emp_codi>1</emp_codi>
+      <mpr_cont>1</mpr_cont>
+      <rub_codi>rub_codi</rub_codi>
+      <pro_codi>pro_codi</pro_codi>
+      <arb_codc>arb_codc</arb_codc>
+      <arb_codp>arb_codp</arb_codp>
+      <arb_coda>arb_coda</arb_coda>
+      <dmp_valo>1.5</dmp_valo>
+      <dmp_desc>dmp_desc</dmp_desc>
+    </InsertarDetCDP>
+  </s:Body>
+</s:Envelope>
