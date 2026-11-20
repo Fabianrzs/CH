@@ -27,6 +27,10 @@ RUN (apt-get update || ( \
       libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 \
       libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2 libxshmfence1 \
     && rm -rf /var/lib/apt/lists/*
+# .NET 5 en Linux no mapea los IDs de zona horaria de Windows que usa el código (p. ej. en el login).
+# tzdata ya viene en la imagen base; se crean enlaces con esos nombres hacia las zonas IANA equivalentes.
+RUN ln -sf /usr/share/zoneinfo/America/New_York "/usr/share/zoneinfo/Eastern Standard Time" \
+ && ln -sf /usr/share/zoneinfo/America/Bogota   "/usr/share/zoneinfo/SA Pacific Standard Time"
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://+:8080 \
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
