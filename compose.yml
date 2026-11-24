@@ -62,6 +62,7 @@ services:
       BUA_BAK: BUA_kriterion_21102026.bak
     volumes:
       - ./docker/sql/restore.sh:/restore.sh:ro
+      - ./docker/sql/seed.sql:/seed.sql:ro
     depends_on:
       sqlserver:
         condition: service_healthy

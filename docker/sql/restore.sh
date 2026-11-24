@@ -36,3 +36,12 @@ restore() {
 restore "$GA2_DB" "$GA2_BAK"
 restore "$BUA_DB" "$BUA_BAK"
 echo "Restauración terminada."
+
+# Parametrización que el backup no trae (interruptores Dodo/TusDatos, catálogo de
+# estados del cliente). Idempotente: se ejecuta en cada arranque, también cuando las
+# bases ya existían, para que los clones viejos también queden al día.
+if [ -f /seed.sql ]; then
+  echo "Aplicando seed de parametrización en $GA2_DB..."
+  "${SQLCMD[@]}" -d "$GA2_DB" -i /seed.sql
+  echo "Seed aplicado."
+fi
