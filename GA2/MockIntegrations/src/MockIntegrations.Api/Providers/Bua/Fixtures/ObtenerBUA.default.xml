@@ -24,10 +24,10 @@
         <d1p1:CausalesBloqueoAfiliado>
           <d1p1:CausalesBloqueoAfiliadoBEL>
             <d1p1:CAUSAL>CAUSAL</d1p1:CAUSAL>
-            <d1p1:CEC_ID>CEC_ID</d1p1:CEC_ID>
-            <d1p1:CEL_ID>CEL_ID</d1p1:CEL_ID>
-            <d1p1:COLUMNA_SELECCION>COLUMNA_SELECCION</d1p1:COLUMNA_SELECCION>
-            <d1p1:ECL_ID>ECL_ID</d1p1:ECL_ID>
+            <d1p1:CEC_ID>1</d1p1:CEC_ID>
+            <d1p1:CEL_ID>1</d1p1:CEL_ID>
+            <d1p1:COLUMNA_SELECCION>false</d1p1:COLUMNA_SELECCION>
+            <d1p1:ECL_ID>1</d1p1:ECL_ID>
             <d1p1:ESTADO>ESTADO</d1p1:ESTADO>
             <d1p1:ESTADO_BLOQUEO>ESTADO_BLOQUEO</d1p1:ESTADO_BLOQUEO>
             <d1p1:FECHA_REGISTRO>2026-01-15T00:00:00</d1p1:FECHA_REGISTRO>
@@ -98,7 +98,7 @@
                 <d1p1:valor>150000</d1p1:valor>
               </d1p1:MovimientoCuentaBEL>
             </d1p1:movimientos>
-            <d1p1:numeroCuenta>numeroCuenta</d1p1:numeroCuenta>
+            <d1p1:numeroCuenta>1001234567</d1p1:numeroCuenta>
             <d1p1:saldo>1.5</d1p1:saldo>
             <d1p1:saldoDisponible>1.5</d1p1:saldoDisponible>
             <d1p1:saldoEnCanje>1.5</d1p1:saldoEnCanje>
@@ -114,16 +114,16 @@
         <d1p1:EmbargosAfiliado>
           <d1p1:EmbargosAfiliadoBEL>
             <d1p1:CODIGO_JUZGADO>CODIGO_JUZGADO</d1p1:CODIGO_JUZGADO>
-            <d1p1:CTA_ID>CTA_ID</d1p1:CTA_ID>
+            <d1p1:CTA_ID>1</d1p1:CTA_ID>
             <d1p1:CUENTA>CUENTA</d1p1:CUENTA>
             <d1p1:ESTADO_BLOQUEO>ESTADO_BLOQUEO</d1p1:ESTADO_BLOQUEO>
             <d1p1:ESTADO_SOLICITUD>ESTADO_SOLICITUD</d1p1:ESTADO_SOLICITUD>
-            <d1p1:MONTOPORCENTAJE>MONTOPORCENTAJE</d1p1:MONTOPORCENTAJE>
+            <d1p1:MONTOPORCENTAJE>50</d1p1:MONTOPORCENTAJE>
             <d1p1:NOMBRE_DEMANDANTE>NOMBRE_DEMANDANTE</d1p1:NOMBRE_DEMANDANTE>
             <d1p1:RADICADO>RADICADO</d1p1:RADICADO>
             <d1p1:RAZON>RAZON</d1p1:RAZON>
-            <d1p1:SLC_ID>SLC_ID</d1p1:SLC_ID>
-            <d1p1:SOLICITUD>SOLICITUD</d1p1:SOLICITUD>
+            <d1p1:SLC_ID>1</d1p1:SLC_ID>
+            <d1p1:SOLICITUD>1</d1p1:SOLICITUD>
           </d1p1:EmbargosAfiliadoBEL>
         </d1p1:EmbargosAfiliado>
         <d1p1:Solicitudes>
@@ -169,12 +169,12 @@
         <d1p1:actividad>MILITAR ACTIVO</d1p1:actividad>
         <d1p1:ciudadNacimiento>
           <d1p1:departamento>
-            <d1p1:idDepartamento>idDepartamento</d1p1:idDepartamento>
+            <d1p1:idDepartamento>11</d1p1:idDepartamento>
             <d1p1:pais>
-              <d1p1:idPais>idPais</d1p1:idPais>
+              <d1p1:idPais>169</d1p1:idPais>
             </d1p1:pais>
           </d1p1:departamento>
-          <d1p1:idCiudad>idCiudad</d1p1:idCiudad>
+          <d1p1:idCiudad>11001</d1p1:idCiudad>
         </d1p1:ciudadNacimiento>
         <d1p1:conyuge>
           <d1p1:celularConyuge>3109876543</d1p1:celularConyuge>
@@ -194,12 +194,12 @@
           <d1p1:celular>3001234567</d1p1:celular>
           <d1p1:ciudadResidencia>
             <d1p1:departamento>
-              <d1p1:idDepartamento>idDepartamento</d1p1:idDepartamento>
+              <d1p1:idDepartamento>11</d1p1:idDepartamento>
               <d1p1:pais>
-                <d1p1:idPais>idPais</d1p1:idPais>
+                <d1p1:idPais>169</d1p1:idPais>
               </d1p1:pais>
             </d1p1:departamento>
-            <d1p1:idCiudad>idCiudad</d1p1:idCiudad>
+            <d1p1:idCiudad>11001</d1p1:idCiudad>
           </d1p1:ciudadResidencia>
           <d1p1:correoInstitucional>juan.perez@example.mil.co</d1p1:correoInstitucional>
           <d1p1:correoPersonal>juan.perez@example.com</d1p1:correoPersonal>
@@ -249,12 +249,12 @@
         </d1p1:informacionFinanciera>
         <d1p1:lugarExpedicion>
           <d1p1:departamento>
-            <d1p1:idDepartamento>idDepartamento</d1p1:idDepartamento>
+            <d1p1:idDepartamento>11</d1p1:idDepartamento>
             <d1p1:pais>
-              <d1p1:idPais>idPais</d1p1:idPais>
+              <d1p1:idPais>169</d1p1:idPais>
             </d1p1:pais>
           </d1p1:departamento>
-          <d1p1:idCiudad>idCiudad</d1p1:idCiudad>
+          <d1p1:idCiudad>11001</d1p1:idCiudad>
         </d1p1:lugarExpedicion>
         <d1p1:modeloSubsidio>1</d1p1:modeloSubsidio>
         <d1p1:participacion>1</d1p1:participacion>
